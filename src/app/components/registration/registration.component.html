@@ -1,0 +1,88 @@
+<button type="button" mdbBtn color="default" rounded="true" data-toggle="modal" data-target="#basicExample"
+  (click)="frame.show()" mdbWavesEffect>Sign Up
+</button>
+
+<div mdbModal #frame="mdbModal" class="modal fade right" id="frameModalTop" tabindex="-1" role="dialog"
+  aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-avatar modal-md" role="document">
+    <!--Content-->
+    <div class="modal-content">
+
+      <div class="modal-body mb-1">
+
+        <!-- Default form register -->
+        <form class="text-center" (submit)="registerUser($event)">
+
+
+          <div class="form-row mb-4">
+            <div class="col">
+              <!-- First name -->
+              <input type="text" id="fulName" class="form-control" placeholder="Enter Full name">
+            </div>
+            <div class="col">
+              <!-- Phone number -->
+              <input type="phone" id="phoneNumber" class="form-control" placeholder="Enter Phone Number">
+            </div>
+          </div>
+
+          <div class="form-row mb-4">
+            <div class="col">
+              <!-- E-mail -->
+              <input type="email" id="email" class="form-control mb-4" placeholder="Enter email address">
+            </div>
+            <div class="col">
+              <!-- role-->
+              <select (change)="selectOption($event.target.value)" [(ngModel)]="selected" name="role" class="browser-default custom-select">
+                <option [value]="item.name" *ngFor="let item of items">{{item.name}}</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Password -->
+          <div class="form-row mb-4">
+            <div class="col">
+              <!-- password -->
+              <input type="password" id="passwod" class="form-control" placeholder="Password"
+                aria-describedby="defaultRegisterFormPasswordHelpBlock">
+            </div>
+            <div class="col">
+              <!-- confirm password -->
+              <input type="password" id="confirmPassword" class="form-control" placeholder="Confirm Password"
+                aria-describedby="defaultRegisterFormPasswordHelpBlock">
+            </div>
+          </div>
+
+
+          <small id="defaultRegisterFormPasswordHelpBlock" class="form-text text-muted mb-4">
+            At least 8 characters and 1 digit
+          </small>
+
+
+          <!-- Sign up button -->
+          <button mdbBtn color="info" block="true" class="my-4" type="submit">Sign in</button>
+
+          <!-- Social register -->
+          <p>or sign up with:</p>
+
+          <a type="button" class="light-blue-text mx-2">
+            <mdb-icon fab icon="facebook"></mdb-icon>
+          </a>
+          <a type="button" class="light-blue-text mx-2">
+            <mdb-icon fab icon="twitter"></mdb-icon>
+          </a>
+          <a type="button" class="light-blue-text mx-2">
+            <mdb-icon fab icon="linkedin"></mdb-icon>
+          </a>
+          <a type="button" class="light-blue-text mx-2">
+            <mdb-icon fab icon="github"></mdb-icon>
+          </a>
+
+          <hr>
+        </form>
+        <!-- Default form register -->
+      </div>
+
+    </div>
+    <!--/.Content-->
+  </div>
+</div>

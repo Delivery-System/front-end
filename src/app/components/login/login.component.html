@@ -1,0 +1,90 @@
+<button type="button" mdbBtn color="default" rounded="true" data-toggle="modal" data-target="#basicExample"
+        (click)="frame.show()" mdbWavesEffect>Login
+</button>
+
+
+<div mdbModal #frame="mdbModal" class="modal fade right" id="frameModalTop" tabindex="-1" role="dialog"
+     aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-avatar modal-sm" role="document">
+    <!--Content-->
+    <div class="modal-content">
+
+      <!-- Header
+      <div class="modal-header">
+        <img src="../../../assets/user3.jpg" alt="user"
+             class="rounded-circle img-responsive">
+      </div> -->
+      <!--Body-->
+      <div class="modal-body mb-1">
+
+        <h5 class="mt-1 mb-2 text-center">Log In</h5>
+         <!-- Register -->
+         <p style="margin-left: 40px; margin-top: 13px; font-size: 12px;">New To EdeliveryMate ?
+          <a routerLink='/register'>SIGN UP</a>
+        </p>
+
+            <!-- Default form login -->
+          <form class="text-center" (submit)="loginUser($event)">
+
+            <!-- Email -->
+            <div>
+              <input type="email" id="emailInput" [formControl]="loginFormModalEmail" class="form-control mb-4" placeholder="Enter email address" style="font-size: 11px;"
+                mdbInput mdbValidate>
+              <mdb-error
+              *ngIf="loginFormModalEmail.invalid && (loginFormModalEmail.dirty || loginFormModalEmail.touched)">
+            </mdb-error>
+            <mdb-success
+              *ngIf="loginFormModalEmail.valid && (loginFormModalEmail.dirty || loginFormModalEmail.touched)">
+             
+            </mdb-success>
+          </div>
+           <div>
+              <!-- Password -->
+              <input type="password" id="passwordInput" class="form-control mb-4" placeholder="Enter password" style="font-size: 11px;"
+              mdbInput mdbValidate>
+              <mdb-error
+              *ngIf="loginFormModalEmail.invalid && (loginFormModalEmail.dirty || loginFormModalEmail.touched)">
+              </mdb-error>
+              <mdb-success
+                *ngIf="loginFormModalEmail.valid && (loginFormModalEmail.dirty || loginFormModalEmail.touched)">
+              </mdb-success>
+          </div>
+      
+            <div class="d-flex justify-content-around" style="font-size: 13px;">
+              <div>
+                <!-- Remember me -->
+                <mdb-checkbox [default]="true">Keep me logged in</mdb-checkbox>
+              </div>
+              <div>
+                <!-- Forgot password -->
+                <a href="">can't log in?</a>
+              </div>
+            </div>
+
+            <!-- Sign in button -->
+            <button mdbBtn color="info" block="true" class="my-4" type="submit">Log in</button>
+
+            <!-- Social login -->
+            <p>or log in with:</p>
+
+            <a type="button" class="light-blue-text mx-2">
+              <mdb-icon fab icon="google"></mdb-icon>
+            </a>
+            <a type="button" class="light-blue-text mx-2">
+              <mdb-icon fab icon="twitter"></mdb-icon>
+            </a>
+            <a type="button" class="light-blue-text mx-2">
+              <mdb-icon fab icon="linkedin"></mdb-icon>
+            </a>
+            <a type="button" class="light-blue-text mx-2">
+              <mdb-icon fab icon="github"></mdb-icon>
+            </a>
+
+          </form>
+          <!-- Default form login -->
+      </div>
+
+    </div>
+    <!--/.Content-->
+  </div>
+</div>

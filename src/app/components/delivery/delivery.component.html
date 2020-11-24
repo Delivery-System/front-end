@@ -1,0 +1,223 @@
+<!-- body content -->
+<div class="dynamicContent">
+    
+    
+</div>
+
+<!-- first Navbar-->
+
+<mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark indigo lighten-1" [containerInside]="false">
+    <!-- Navbar brand -->
+    <mdb-navbar-brand>
+        <a class="navbar-brand" href="#">
+            <img src="https://mdbootstrap.com/img/logo/mdb-transparent.png" height="30" alt="">
+        </a>
+    </mdb-navbar-brand>
+
+    <links>
+        <ul class="navbar-nav mr-auto ">
+            <li class="nav-item">
+                <a class="nav-link waves-light" mdbWavesEffect>
+                    <div class="input-group mb-2 mr-sm-2">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text">
+                                <mdb-icon fas icon="search"></mdb-icon>
+                            </div>
+                        </div>
+                        <input mdbInput type="text" class="form-control py-0 searchEverything"
+                            id="inlineFormInputGroupUsername2" placeholder="Search for anything">
+                    </div>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link waves-light" mdbWavesEffect>
+                    <input mdbInput type="text" class="form-control mb-2 mr-sm-2 locationDisplay"
+                        id="inlineFormInputName2" placeholder="">
+                </a>
+            </li>
+
+        </ul>
+        <ul class="navbar-nav ml-auto nav-flex-icons leftNavs">
+
+            <li class="nav-item">
+                <a class="nav-link">
+                    <mdb-icon fas icon="shopping-cart"></mdb-icon>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link">
+                    <mdb-icon fas icon="envelope"></mdb-icon>
+                </a>
+            </li>
+            <li class="nav-item avatar dropdown" dropdown>
+                <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light"
+                    mdbWavesEffect>
+                    <img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-2.jpg" alt=""
+                        class="img-fluid rounded-circle z-depth-0" style="width: 30px;"></a>
+                <div *dropdownMenu class="dropdown-menu dropdown-menu-right dropdown dropdown-primary" role="menu">
+                    <a class="dropdown-item waves-light" mdbWavesEffect href="#">My account</a>
+                    <a class="dropdown-item waves-light" mdbWavesEffect href="#">Log out</a>
+                </div>
+            </li>
+        </ul>
+    </links>
+</mdb-navbar>
+
+<!-- second Navbar-->
+
+<!-- second Navbar-->
+
+<mdb-navbar SideClass="navbar white lighten-1" class="secondNavs" [containerInside]="false">
+    &nbsp; &nbsp;
+    <a class="nav-link active" routerLink="/delivery" id="activeLink">
+        <mdb-icon fas icon="couch"></mdb-icon> &nbsp; FURNITURE
+    </a>
+    <a class="nav-link" routerLink="/delivery">
+        <mdb-icon fas icon="utensils"></mdb-icon> &nbsp; FOOD
+    </a>
+    <a class="nav-link" href="#">
+        <mdb-icon fas icon="tshirt"></mdb-icon> &nbsp; LAUNDARY
+    </a>
+    <a class="nav-link" href="#">
+        <mdb-icon fas icon="shopping-basket"></mdb-icon>&nbsp; GROCERIES
+    </a>
+    <a class="nav-link" href="#">
+        <mdb-icon fas icon="gift"></mdb-icon>&nbsp; GIFTS
+    </a>
+    <a class="nav-link disabled" href="#">
+        <mdb-icon fas icon="university"></mdb-icon>&nbsp; MORE STORE
+    </a>
+    <a class="nav-link" href="#"></a>
+    <a class="nav-link" href="#"></a>
+    <a class="nav-link" href="#"></a>
+    <a class="nav-link disabled " id="forcompany" href="#">For company</a>
+    <a class="nav-link disabled" href="#" id="chat">
+        <mdb-icon fas icon="sms"></mdb-icon>
+    </a>
+</mdb-navbar>
+
+<!-- body content -->
+<div class="dynamicContent">
+    <div class="contentLeft">
+        <ul class="nav flex-column lighten-4 py-4 ">
+            <li class="nav-item" class="refine">
+                <a class="nav-link" href="#!"> <span></span>&nbsp;&nbsp; Refine by</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" href="#!" style="color: black;  font-weight: bold;">&nbsp;&nbsp; Order
+                    Information</a>
+            </li>
+            <li class="nav-item" style="font-size: 5px; display: inline;">
+                <button mdbBtn type="button" gradient="blue" class="btn-md" rounded="true"
+                    mdbWavesEffect>Delivery</button>
+                <button mdbBtn type="button" color="info" class="btn-md" outline="true" mdbWavesEffect>PickUp</button>
+            </li>
+            <li class="nav-item" style="display: flex;">
+                <!-- <div class="md-form" style="width: 130px;">
+                        <input type="date" id="input" class="form-control" mdbInput>
+                      </div>
+                      &nbsp;&nbsp;&nbsp;&nbsp;
+                      <div class="md-form" style="width: 110px;">
+                        <input type="time" id="input" class="form-control" value="13:00"
+                          mdbInput/>
+                        
+                      </div> -->
+            </li>
+            <br> <br>
+            <li class="nav-item">
+                <a class="nav-link active" href="#!" style="color: black;  font-weight: bold;">&nbsp;&nbsp; Category</a>
+            </li>
+            <li class="nav-item" class="refine">
+                <a class="nav-link" href="#!"> <span></span>&nbsp;&nbsp; Furniture</a>
+            </li>
+            <li class="nav-item" class="refine">
+                <a class="nav-link" href="#!"> <span></span>&nbsp;&nbsp; Food </a>
+            </li>
+            <li class="nav-item" class="refine">
+                <a class="nav-link" href="#!"> <span></span>&nbsp;&nbsp; Groceries</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" href="#!" style="color: black;  font-weight: bold;">&nbsp;&nbsp; Feature
+                    <mdb-badge pill="true" info="true">New 2</mdb-badge></a>
+            </li>
+            <li class="nav-item" class="refine" style="font-size: 15px;">
+                <a class="nav-link" href="#!"> <span></span>&nbsp;&nbsp;
+                    <mdb-checkbox [default]="true"> Special Offers(7)</mdb-checkbox></a>
+            </li>
+            <li class="nav-item" class="refine"  style="font-size: 15px;">
+                <a class="nav-link" href="#!"> <span></span>&nbsp;&nbsp; <mdb-checkbox [default]="true">Free Delivery(4)</mdb-checkbox> </a>
+            </li>
+           <br>
+
+            <li class="nav-item">
+                <a class="nav-link active" href="#!" style="color: black;  font-weight: bold;">&nbsp;&nbsp; Delivery Minimum
+                </a>
+            </li>
+            <li class="nav-item" class="refine" style="font-size: 15px;">
+                <a class="nav-link" href="#!"> <span></span>&nbsp;&nbsp;<!-- Default unchecked -->
+                    <mdb-checkbox [default]="true"> < 50 birr</mdb-checkbox></a>
+            </li>
+            <li class="nav-item" class="refine" style="font-size: 15px;">
+                <a class="nav-link" href="#!"> <span></span>&nbsp;&nbsp; <mdb-checkbox [default]="true"> < 100 birr</mdb-checkbox> </a>
+            </li>
+            <li class="nav-item" class="refine" style="font-size: 15px;">
+                <a class="nav-link" href="#!"> <span></span>&nbsp;&nbsp;<mdb-checkbox [default]="true"> < 200 birr</mdb-checkbox> </a>
+            </li>
+            <li class="nav-item" class="refine" style="font-size: 15px;">
+                <a class="nav-link" href="#!"> <span></span>&nbsp;&nbsp; <mdb-checkbox [default]="true"> < 300 birr</mdb-checkbox></a>
+            </li>
+
+            <li class="nav-item" style="font-size: 15px;">
+                <a class="nav-link active" href="#!" style="color: black;  font-weight: bold;">&nbsp;&nbsp; Delivery Estimate
+                </a>
+            </li>
+            <li class="nav-item" class="refine" style="font-size: 15px;">
+                <a class="nav-link" href="#!"> <span></span>&nbsp;&nbsp;  < 30 min</a>
+            </li>
+            <li class="nav-item" class="refine" style="font-size: 15px;">
+                <a class="nav-link" href="#!"> <span></span>&nbsp;&nbsp; < 45 min</a>
+            </li>
+            <li class="nav-item" class="refine" style="font-size: 15px;">
+                <a class="nav-link" href="#!"> <span></span>&nbsp;&nbsp;  < 60 min </a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="contentRight">
+        <mdb-card class="dynamicCard">
+            <mdb-card-body>
+                <mdb-card-title>
+                </mdb-card-title>
+                <div>
+                    <ul class="list-group list-group-horizontal-lg">
+                        <li class="list-group-item">Cras justo odio</li>
+                        <li class="list-group-item">Dapibus ac facilisis in</li>
+                        <li class="list-group-item">Morbi leo risus</li>
+                        <li class="list-group-item">Morbi leo risus</li>
+                      </ul>
+                </div>
+            </mdb-card-body>
+        </mdb-card>
+    </div>
+
+    <!-- Footer -->
+
+    <!-- Copyright -->
+
+    <svg id="clouds" alt="Gray Clouds Background" xmlns="http://www.w3.org/2000/svg" width="2611.084" height="485.677"
+        viewBox="0 0 2611.084 485.677">
+        <path id="Path_39" data-name="Path 39"
+            d="M2379.709,863.793c10-93-77-171-168-149-52-114-225-105-264,15-75,3-140,59-152,133-30,2.83-66.725,9.829-93.5,26.25-26.771-16.421-63.5-23.42-93.5-26.25-12-74-77-130-152-133-39-120-212-129-264-15-54.084-13.075-106.753,9.173-138.488,48.9-31.734-39.726-84.4-61.974-138.487-48.9-52-114-225-105-264,15a162.027,162.027,0,0,0-103.147,43.044c-30.633-45.365-87.1-72.091-145.206-58.044-52-114-225-105-264,15-75,3-140,59-152,133-53,5-127,23-130,83-2,42,35,72,70,86,49,20,106,18,157,5a165.625,165.625,0,0,0,120,0c47,94,178,113,251,33,61.112,8.015,113.854-5.72,150.492-29.764a165.62,165.62,0,0,0,110.861-3.236c47,94,178,113,251,33,31.385,4.116,60.563,2.495,86.487-3.311,25.924,5.806,55.1,7.427,86.488,3.311,73,80,204,61,251-33a165.625,165.625,0,0,0,120,0c51,13,108,15,157-5a147.188,147.188,0,0,0,33.5-18.694,147.217,147.217,0,0,0,33.5,18.694c49,20,106,18,157,5a165.625,165.625,0,0,0,120,0c47,94,178,113,251,33C2446.709,1093.793,2554.709,922.793,2379.709,863.793Z"
+            transform="translate(142.69 -634.312)" fill="#eee" />
+    </svg>
+</div>
+<footer class=" white">
+    <!-- Copyright -->
+    <a href="https://github.com/angular/angular" target="_blank" rel="noopener">
+        <svg class="material-icons" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+            <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z" fill="#1976d2" />
+            <path d="M0 0h24v24H0z" fill="none" /></svg>
+    </a>
+</footer>
+
+<router-outlet></router-outlet>
