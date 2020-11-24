@@ -34,7 +34,7 @@ import { OrderService } from './services/order.service';
     LoginComponent,
     RegistrationComponent,
     DeliveryComponent,
-    OrderComponent
+    OrderComponent,
   ],
   imports: [
     BrowserModule,
