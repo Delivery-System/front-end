@@ -801,13 +801,16 @@
   <div class="modal-dialog modal-avatar modal-md" role="document">
     <div class="modal-content">
       <div class="modal-body mb-1">
-    <form class="text-center">
+    <form class="text-center" (submit)="orderDelivery($event)">
       <div class="form-row mb-4">
         <div class="col">
-          <input type="text" id="defaultRegisterFormFirstName" class="form-control" placeholder="">
+          <input type="text" id="name" class="form-control" placeholder="Enter name">
         </div>
         <div class="col">
-          <input type="text" id="defaultRegisterFormLastName" class="form-control" placeholder="">
+          <!-- role-->
+          <select (change)="selectOption($event.target.value)" [(ngModel)]="selected" name="role" class="browser-default custom-select">
+            <option [value]="item.name" *ngFor="let item of items">{{item.name}}</option>
+          </select>
         </div>
       </div>
       <div class="form-row mb-4">

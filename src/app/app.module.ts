@@ -23,6 +23,8 @@ import { MdBootstrapModule } from './md-bootstrap.module';
 import { DeliveryComponent } from './components/delivery/delivery.component';
 import { OrderComponent } from './components/order/order.component';
 import { RecaptchalLoaderServiceService } from './services/recaptchal-loader-service.service';
+import { OrderService } from './services/order.service';
+
 
 @NgModule({
   declarations: [
@@ -46,7 +48,7 @@ import { RecaptchalLoaderServiceService } from './services/recaptchal-loader-ser
     MDBBootstrapModule.forRoot(),
     AppRoutingModule
   ],
-  providers: [AuthService,AuthGuard, 
+  providers: [AuthService,OrderService,AuthGuard, 
     {provide: RECAPTCHA_V3_SITE_KEY, useValue: '<YOUR_SITE_KEY>'},
     {
       provide: RECAPTCHA_LANGUAGE,

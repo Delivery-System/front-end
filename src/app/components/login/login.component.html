@@ -28,7 +28,7 @@
 
             <!-- Email -->
             <div>
-              <input type="email" id="emailInput" [formControl]="loginFormModalEmail" class="form-control mb-4" placeholder="Enter email address" style="font-size: 11px;"
+              <input type="text" id="emailInput" [formControl]="loginFormModalEmail" class="form-control mb-4" placeholder="Enter email address" style="font-size: 11px;"
                 mdbInput mdbValidate>
               <mdb-error
               *ngIf="loginFormModalEmail.invalid && (loginFormModalEmail.dirty || loginFormModalEmail.touched)">
