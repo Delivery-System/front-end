@@ -25,6 +25,9 @@ import { OrderComponent } from './components/order/order.component';
 import { RecaptchalLoaderServiceService } from './services/recaptchal-loader-service.service';
 import { OrderService } from './services/order.service';
 import { ModalOrderEditComponent } from './components/modal-order-edit/modal-order-edit.component';
+import { AdminDeliveryComponent } from './components/admin-delivery/admin-delivery.component';
+import { AgentDeliveryComponent } from './components/agent-delivery/agent-delivery.component';
+import { CompanyDeliveryComponent } from './components/company-delivery/company-delivery.component';
 
 
 @NgModule({
@@ -37,6 +40,9 @@ import { ModalOrderEditComponent } from './components/modal-order-edit/modal-ord
     DeliveryComponent,
     OrderComponent,
     ModalOrderEditComponent,
+    AdminDeliveryComponent,
+    AgentDeliveryComponent,
+    CompanyDeliveryComponent,
   ],
   imports: [
     BrowserModule,

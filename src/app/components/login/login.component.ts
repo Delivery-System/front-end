@@ -43,8 +43,26 @@ export class LoginComponent implements OnInit {
     .subscribe(res =>{
       console.log('server response:',res);
       if(res.success){
-        this.router.navigate(['user/profile']);
-        this.authService.setLoggedIn(true);
+        if(username == 'hena'){
+          this.router.navigate(['user/endUser']);
+          this.authService.setLoggedIn(true);
+        }
+        if(username == 'agent'){
+          this.router.navigate(['user/agent']);
+          this.authService.setLoggedIn(true);
+        }
+        if(username == 'admin'){
+          this.router.navigate(['user/admin']);
+          this.authService.setLoggedIn(true);
+        }
+        if(username == 'company'){
+          this.router.navigate(['user/company']);
+          this.authService.setLoggedIn(true);
+        }
+        // else{
+        //   this.router.navigate(['order']);
+        //   this.authService.setLoggedIn(true);
+        // }
       }
    });;
     
