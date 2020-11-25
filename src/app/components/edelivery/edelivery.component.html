@@ -242,21 +242,66 @@
                 </div>
 
                 <div class="placeTaker">
-                    <table mdbTable>
+                    <table mdbTable striped="true">
                         <thead>
-                            <tr>
-                                <th *ngFor="let head of headElement" scope="col">{{head}} </th>
-                            </tr>
+                          <tr>
+                            <th *ngFor="let head of headElements" scope="col">{{ head }}</th>
+                          </tr>
                         </thead>
-                        <tbody>
-                            <tr mdbTableCol *ngFor="let el of elementsOrder">
-                                <th scope="row">{{el.id}}</th>
-                                <td>{{el.types}}</td>
-                                <td>{{el.quantity}}</td>
-                                <td>{{el.time}}</td>
-                            </tr>
+                        <tbody mdbTableCol *ngFor="let el of elements">
+                          <tr>
+                            <td scope="row">
+                              <button
+                                type="button"
+                                mdbBtn
+                                color="danger"
+                                class="master-button"
+                                mdbWavesEffect
+                                *ngIf="el.collapsed"
+                                (click)="el.collapsed = !el.collapsed"
+                              >
+                                <mdb-icon fas icon="angle-down"></mdb-icon>
+                              </button>
+                              <button
+                                type="button"
+                                mdbBtn
+                                color="success"
+                                class="master-button"
+                                mdbWavesEffect
+                                *ngIf="!el.collapsed"
+                                (click)="el.collapsed = !el.collapsed"
+                              >
+                                <mdb-icon fas icon="angle-right"></mdb-icon>
+                              </button>
+                              <span class="ml-1">{{ el.id }}</span>
+                            </td>
+                            <td>{{ el.first }}</td>
+                            <td>{{ el.last }}</td>
+                            <td>{{ el.handle }}</td>
+                          </tr>
+                          <tr
+                            *ngIf="el.collapsed"
+                            style="text-align: center; background-color: rgba(0, 0, 0,  0.015)"
+                          >
+                            <td colspan="100%" style="border: 0 !important">
+                              <table mdbTable>
+                                <thead class="black white-text">
+                                  <tr>
+                                    <th *ngFor="let head of masterHeadElements" scope="col">{{ head }}</th>
+                                  </tr>
+                                </thead>
+                                <tbody *ngFor="let detail of el.masterDetail">
+                                  <tr>
+                                    <td>{{ detail.orderId }}</td>
+                                    <td>{{ detail.orderDate }}</td>
+                                    <td>{{ detail.adress }}</td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                            </td>
+                          </tr>
                         </tbody>
-                    </table>
+                      </table>
 
                 </div>
             </mdb-card-body>

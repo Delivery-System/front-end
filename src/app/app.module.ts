@@ -24,6 +24,7 @@ import { DeliveryComponent } from './components/delivery/delivery.component';
 import { OrderComponent } from './components/order/order.component';
 import { RecaptchalLoaderServiceService } from './services/recaptchal-loader-service.service';
 import { OrderService } from './services/order.service';
+import { ModalOrderEditComponent } from './components/modal-order-edit/modal-order-edit.component';
 
 
 @NgModule({
@@ -35,6 +36,7 @@ import { OrderService } from './services/order.service';
     RegistrationComponent,
     DeliveryComponent,
     OrderComponent,
+    ModalOrderEditComponent,
   ],
   imports: [
     BrowserModule,
@@ -63,6 +65,9 @@ import { OrderService } from './services/order.service';
       useValue: new RecaptchalLoaderServiceService(),
     },
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [
+    ModalOrderEditComponent
+  ]
 })
 export class AppModule { }
