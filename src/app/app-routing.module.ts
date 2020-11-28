@@ -14,7 +14,6 @@ import { AgentDeliveryComponent } from './components/agent-delivery/agent-delive
 import { CompanyDeliveryComponent } from './components/company-delivery/company-delivery.component';
 import { DeliveryComponent } from './components/delivery/delivery.component';
 
-
 const routes: Routes = [
   {
     path:'order',

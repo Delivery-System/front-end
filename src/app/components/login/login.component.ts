@@ -1,10 +1,14 @@
 // built-in modules
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,ViewChild,ElementRef,ChangeDetectorRef} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import { Router } from '@angular/router';
+import {MDBModalRef, MDBModalService,MdbTableDirective, ModalDirective} from "angular-bootstrap-md";
+
 
 // custom modules
 import { AuthService } from 'src/app/services/auth.service';
+import { RegistrationComponent } from '../registration/registration.component';
+// RegistrationComponent
 
 @Component({
   selector: 'app-login',
@@ -12,8 +16,14 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
+  @ViewChild(MdbTableDirective, { static: true }) mdbTable: MdbTableDirective;
+  @ViewChild('row', { static: true }) row: ElementRef;
+  @ViewChild('frame') public showModalOnClick: ModalDirective;
+
+  modalRef: MDBModalRef;
+
   validatingForm: FormGroup;
-  constructor( private authService:AuthService, private router:Router) { }
+  constructor( private authService:AuthService, private router:Router, private cdRef: ChangeDetectorRef,private modalService: MDBModalService) { }
 
   ngOnInit(): void {
     this.validatingForm = new FormGroup({
@@ -31,6 +41,22 @@ export class LoginComponent implements OnInit {
     return this.validatingForm.get('loginFormModalPassword');
   }
   
+  openSignUpPage() {
+    console.log('signup page clicked');
+    // const elementIndex = this.elements.findIndex((elem: any) => el === elem);
+    const modalOptions = {
+      data: {
+        editableRow: ''
+      }
+    };
+   
+    this.showModalOnClick.hide();
+    this.modalRef = this.modalService.show(RegistrationComponent, modalOptions);
+    // this.modalRef.content.saveButtonClicked.subscribe((newElement: any) => {
+    //   this.elements[elementIndex] = newElement;
+    // });
+    // this.mdbTable.setDataSource(this.elements);
+  }
   //login request 
   loginUser(event){
     // event.preventDefault();

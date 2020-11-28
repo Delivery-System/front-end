@@ -28,6 +28,7 @@ import { ModalOrderEditComponent } from './components/modal-order-edit/modal-ord
 import { AdminDeliveryComponent } from './components/admin-delivery/admin-delivery.component';
 import { AgentDeliveryComponent } from './components/agent-delivery/agent-delivery.component';
 import { CompanyDeliveryComponent } from './components/company-delivery/company-delivery.component';
+import { OrderListComponent } from './components/order-list/order-list.component';
 
 
 @NgModule({
@@ -43,6 +44,7 @@ import { CompanyDeliveryComponent } from './components/company-delivery/company-
     AdminDeliveryComponent,
     AgentDeliveryComponent,
     CompanyDeliveryComponent,
+    OrderListComponent
   ],
   imports: [
     BrowserModule,

@@ -2,6 +2,7 @@
 import { Component, OnInit, ViewChild, HostListener, AfterViewInit, ChangeDetectorRef } from '@angular/core';
 import { RecaptchaFormsModule, ReCaptchaV3Service } from 'ng-recaptcha';
 import { MdbTablePaginationComponent, MdbTableDirective  } from 'angular-bootstrap-md';
+import {FormControl, FormGroup, Validators} from "@angular/forms";
 
 // custom module
 import { OrderService } from 'src/app/services/order.service';
@@ -16,6 +17,7 @@ import { Role } from 'src/app/modals/role';
   styleUrls: ['./edelivery.component.scss']
 })
 export class EdeliveryComponent implements OnInit, AfterViewInit {
+  validatingForm: FormGroup;
 
   items: any[] = [
     { id: 1, name: 'Document ' },
@@ -62,6 +64,7 @@ export class EdeliveryComponent implements OnInit, AfterViewInit {
       collapsed: false,
       masterDetail: [{ orderId: 3, orderDate: '15-01-1994', adress: 'Kirchgasse 6' }],
     },
+    
   ];
 
   headElements = ['ID', 'First', 'Last', 'Handle'];
@@ -78,10 +81,17 @@ export class EdeliveryComponent implements OnInit, AfterViewInit {
 
   constructor(private cdRef: ChangeDetectorRef, private recaptchaV3Service: ReCaptchaV3Service, private orderService:OrderService) { }
   ngOnInit(): void {
+    this.validatingForm = new FormGroup({
+      modalFormAvatarPassword: new FormControl('', Validators.required)
+    });
   }
   ngAfterViewInit() {
   }
 
+  get modalFormAvatarPassword() {
+    return this.validatingForm.get('modalFormAvatarPassword');
+  }
+  
   getProfile() {
     console.log('profile clicked');
     this.profileStatus = true;
