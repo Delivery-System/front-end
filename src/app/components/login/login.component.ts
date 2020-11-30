@@ -43,13 +43,17 @@ export class LoginComponent implements OnInit {
   
   openSignUpPage() {
     console.log('signup page clicked');
+
     // const elementIndex = this.elements.findIndex((elem: any) => el === elem);
     const modalOptions = {
+      backdrop: true, keyboard: true, focus: true, show: true,
+      ignoreBackdropClick: true, animated: true, containerClass: 'overflow-auto',
+      class: 'modal-md',
       data: {
         editableRow: ''
       }
     };
-   
+    
     this.showModalOnClick.hide();
     this.modalRef = this.modalService.show(RegistrationComponent, modalOptions);
     // this.modalRef.content.saveButtonClicked.subscribe((newElement: any) => {

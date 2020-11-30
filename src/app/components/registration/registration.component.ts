@@ -57,21 +57,24 @@ export class RegistrationComponent implements OnInit {
   registerUser(event){
     console.log('register button clicked');
     const targetValue=event.target;
-    const fullname=targetValue.querySelector('#fulName').value;
+    const firstName=targetValue.querySelector('#firstName').value;
+    const lastName=targetValue.querySelector('#lastName').value;
+    const userName=targetValue.querySelector('#userName').value;
     const phoneNumber= targetValue.querySelector('#phoneNumber').value;
     const email= targetValue.querySelector('#email').value;
     // const role= targetValue.querySelector('#role').text();
     const password=targetValue.querySelector('#passwod').value;
-    const conPassword=targetValue.querySelector('#confirmPassword').value;
-    console.log(fullname, phoneNumber,email,this.selected,password,conPassword);
-    if(password !== conPassword ){
+    const confirmPassword=targetValue.querySelector('#confirmPassword').value;
+    console.log(firstName,lastName,userName, phoneNumber,email,this.selected,password,confirmPassword);
+    if(password !== confirmPassword ){
       alert('password not matched');
     }
     else{
       console.log('ready to login');
-      this.authService.userRegisterDetail(fullname,phoneNumber,email,this.selected,password)
+      this.authService.userRegisterDetail(firstName,lastName,userName,phoneNumber,email,this.selected,password,confirmPassword)
       .subscribe((res)=>{
           if(res.success){
+             console.log(res);
             this.router.navigate(['login']);
 
           }

@@ -16,22 +16,26 @@ export class AuthService {
   constructor(private http:HttpClient) { }
 
   // post the login info to api server
-  // http://localhost:3000/users/login
+  // http://localhost:3000/users/login lidu local server
+  // https://et-delivery-system.herokuapp.com/  server on heroku
   userLoginDetail(username, password): Observable<UserLogin> {
-     return this.http.post<UserLogin>('http://localhost:3000/api/userLogin',{
+     return this.http.post<UserLogin>('http://localhost:3000/agents/login',{
        username,
        password
      });
   }
 
   // post the login info to api server
-  userRegisterDetail(fullname,phonNumber,email,selected,password):Observable<UserRegister>{
-    return this.http.post<UserRegister>('http://localhost:3000/api/userRegister',{
-      fullname,
-      phonNumber,
+  userRegisterDetail(firstName,lastName,userName,phoneNumber,email,selected,password,confirmPassword):Observable<UserRegister>{
+    return this.http.post<UserRegister>('http://localhost:3000/agents/register',{
+      firstName,
+      lastName,
+      userName,
+      phoneNumber,
       email,
       selected,
-      password
+      password,
+      confirmPassword
     });
 
   }
