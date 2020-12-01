@@ -1,51 +1,50 @@
-<!-- Default form register -->
-<form class="text-center border border-light p-5">
+<!-- <form class="text-center border border-light p-5">
 
   <p class="h4 mb-4">Sign up</p>
 
   <div class="form-row mb-4">
-    <div class="col">
-      <!-- First name -->
-      <input type="text" id="defaultRegisterFormFirstName" class="form-control" placeholder="First name">
+    <div class="col"> -->
+<!-- First name -->
+<!-- <input type="text" id="defaultRegisterFormFirstName" class="form-control" placeholder="First name">
     </div>
-    <div class="col">
-      <!-- Last name -->
-      <input type="text" id="defaultRegisterFormLastName" class="form-control" placeholder="Last name">
+    <div class="col"> -->
+<!-- Last name -->
+<!-- <input type="text" id="defaultRegisterFormLastName" class="form-control" placeholder="Last name">
     </div>
-  </div>
+  </div> -->
 
-  <!-- Username -->
-  <input type="username" id="username" class="form-control mb-4" placeholder="Username">
+<!-- Username -->
+<!-- <input type="username" id="username" class="form-control mb-4" placeholder="Username"> -->
 
-  <!-- E-mail -->
-  <input type="email" id="defaultRegisterFormEmail" class="form-control mb-4" placeholder="E-mail">
+<!-- E-mail -->
+<!-- <input type="email" id="defaultRegisterFormEmail" class="form-control mb-4" placeholder="E-mail"> -->
 
-  <!-- Password -->
-  <input type="password" id="defaultRegisterFormPassword" class="form-control" placeholder="Password" aria-describedby="defaultRegisterFormPasswordHelpBlock">
-  <small id="defaultRegisterFormPasswordHelpBlock" class="form-text text-muted mb-4">
-    At least 8 characters and 1 digit
-  </small>
+<!-- Password -->
+<!-- <input type="password" id="defaultRegisterFormPassword" class="form-control" placeholder="Password" aria-describedby="defaultRegisterFormPasswordHelpBlock"> -->
+<!-- <small id="defaultRegisterFormPasswordHelpBlock" class="form-text text-muted mb-4"> -->
+<!-- At least 8 characters and 1 digit -->
+<!-- </small> -->
 
-  <div class="form-row mb-4">
-    <div class="col">
-     <!-- Phone number -->
-  <input type="text" id="defaultRegisterPhonePassword" class="form-control" placeholder="Phone number" aria-describedby="defaultRegisterFormPhoneHelpBlock">
-    </div>
-    <div class="col">
-      <!-- Last name -->
-      <input type="text" id="defaultRegisterFormLastName" class="form-control" placeholder="Last name">
-    </div>
-  </div>
+<!-- <div class="form-row mb-4"> -->
+<!-- <div class="col"> -->
+<!-- Phone number -->
+<!-- <input type="text" id="defaultRegisterPhonePassword" class="form-control" placeholder="Phone number" aria-describedby="defaultRegisterFormPhoneHelpBlock"> -->
+<!-- </div> -->
+<!-- <div class="col"> -->
+<!-- Last name -->
+<!-- <input type="text" id="defaultRegisterFormLastName" class="form-control" placeholder="Last name"> -->
+<!-- </div> -->
+<!-- </div> -->
 
- 
-  <!-- Sign up button -->
-  <button mdbBtn color="info" block="true" class="my-4" style="border-radius: 30px;" type="submit">Sign in</button>
 
-  <!-- Social register -->
-  <p>or sign up with:</p>
+<!-- Sign up button -->
+<!-- <button mdbBtn color="info" block="true" class="my-4" style="border-radius: 30px;" type="submit">Sign in</button> -->
 
-  <!-- Sign up button -->
-  <button mdbBtn color="info" block="true" class="my-4" style="border-radius: 30px;" type="submit"> <mdb-icon fab icon="google"></mdb-icon>Sign in with google</button>
+<!-- Social register -->
+<!-- <p>or sign up with:</p> -->
+
+<!-- Sign up button -->
+<!-- <button mdbBtn color="info" block="true" class="my-4" style="border-radius: 30px;" type="submit"> <mdb-icon fab icon="google"></mdb-icon>Sign in with google</button> -->
 <!-- 
   <a type="button" class="light-blue-text mx-2">
     <mdb-icon fab icon="facebook"></mdb-icon>
@@ -60,8 +59,116 @@
     <mdb-icon fab icon="github"></mdb-icon>
   </a> -->
 
-  <hr>
-</form>
+<!-- <hr> -->
+<!-- </form> -->
 <!-- Default form register -->
 
+<mat-horizontal-stepper linear #stepper>
+  <mat-step [stepControl]="firstFormGroup">
+    <form [formGroup]="firstFormGroup" (submit)="registerUser ($event)">
+      <ng-template matStepLabel>Basic Info</ng-template>
+      <div class="form-row mb-4">
+        <div class="col">
+          <!-- First name -->
+          <mat-form-field>
+            <mat-label>First Name</mat-label>
+            <input matInput placeholder="First name" id="firstName" type="text" formControlName="firstCtrl" required>
+          </mat-form-field>
+        </div>
+        <div class="col">
+          <!-- Last name -->
+          <mat-form-field>
+            <mat-label>Last name </mat-label>
+            <input matInput placeholder="Last name" id="lastName" type="text" formControlName="firstCtrl" required>
+          </mat-form-field>
+        </div>
+      </div>
 
+      <div class="form-row mb-4">
+        <div class="col">
+          <!-- User name -->
+          <mat-form-field>
+            <mat-label>User Name</mat-label>
+            <input matInput placeholder="User name" id="userName" type="text" formControlName="firstCtrl" required>
+          </mat-form-field>
+        </div>
+        <div class="col">
+          <!-- Email -->
+          <mat-form-field>
+            <mat-label>Email </mat-label>
+            <input matInput placeholder="Email" id="email" type="email" formControlName="firstCtrl" required>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="form-row mb-4">
+        <div class="col">
+          <!-- password -->
+          <mat-form-field>
+            <mat-label>Password</mat-label>
+            <input matInput placeholder="Password" id="password"  type="password" formControlName="firstCtrl" required>
+          </mat-form-field>
+        </div>
+        <div class="col">
+          <!-- Confirm Password -->
+          <mat-form-field>
+            <mat-label>Confirm Password </mat-label>
+            <input matInput placeholder="Confirm Password" id="confirmPassword" formControlName="firstCtrl" required>
+          </mat-form-field>
+        </div>
+      </div>
+      
+      <div style="display: flex;">
+        <div>
+          <p style="margin-left: 40px; margin-top: 13px; font-size: 11px;">Already have an account?
+            <a  (click)="openLoginPage()" style="color: rgb(207, 124, 75);">LOG IN</a>
+          </p>
+        </div>
+        <div style="margin-left: 100px;">
+          <button mat-button color="primary" type="submit" matStepperNext>Next</button>
+        </div>
+      </div>
+     
+    </form>
+   
+  </mat-step>
+  <mat-step [stepControl]="secondFormGroup" [optional]="true">
+    <form [formGroup]="secondFormGroup">
+      <ng-template matStepLabel>Additional Info </ng-template>
+      <div class="form-row mb-4">
+        <div class="col">
+          <!-- Address -->
+          <mat-form-field>
+            <mat-label>Address</mat-label>
+            <input matInput formControlName="secondCtrl" placeholder="Ex. 1 Main St, New York, NY" required>
+          </mat-form-field>
+        </div>
+        <div class="col">
+          <!-- Last name -->
+          <mat-form-field appearance="fill">
+            <mat-label>Select an option</mat-label>
+            <mat-select [(value)]="selectedRole">
+              <mat-option value="end-user">End-User</mat-option>
+              <mat-option value="agent">Agent</mat-option>
+              <mat-option value="Company">Company</mat-option>
+            </mat-select>
+          </mat-form-field>
+          
+        </div>
+      </div>
+
+    
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button color="primary" matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step>
+    <ng-template matStepLabel>Done</ng-template>
+    <p>You are now done.</p>
+    <div>
+      <button mat-button matStepperPrevious>Back</button>
+      <button mat-button color="primary" (click)="stepper.reset()">Sign Up</button>
+    </div>
+  </mat-step>
+</mat-horizontal-stepper>

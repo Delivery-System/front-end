@@ -9,7 +9,12 @@ import { RecaptchaModule, RecaptchaFormsModule } from 'ng-recaptcha';
 import { RECAPTCHA_SETTINGS, RecaptchaSettings } from 'ng-recaptcha';
 import { RECAPTCHA_LANGUAGE } from 'ng-recaptcha';
 import { RecaptchaLoaderService } from 'ng-recaptcha';
- 
+
+// material module
+import { MaterialModule } from './material.module';
+
+
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 // custom module
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -29,6 +34,8 @@ import { AdminDeliveryComponent } from './components/admin-delivery/admin-delive
 import { AgentDeliveryComponent } from './components/agent-delivery/agent-delivery.component';
 import { CompanyDeliveryComponent } from './components/company-delivery/company-delivery.component';
 import { OrderListComponent } from './components/order-list/order-list.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
 
 
 @NgModule({
@@ -44,7 +51,8 @@ import { OrderListComponent } from './components/order-list/order-list.component
     AdminDeliveryComponent,
     AgentDeliveryComponent,
     CompanyDeliveryComponent,
-    OrderListComponent
+    OrderListComponent,
+    ResetPasswordComponent
   ],
   imports: [
     BrowserModule,
@@ -52,11 +60,13 @@ import { OrderListComponent } from './components/order-list/order-list.component
     ReactiveFormsModule,
     HttpClientModule,
     MdBootstrapModule,
+    MaterialModule,
     RecaptchaV3Module,
     RecaptchaModule,
     RecaptchaFormsModule,
     MDBBootstrapModule.forRoot(),
-    AppRoutingModule
+    AppRoutingModule,
+    BrowserAnimationsModule
   ],
   providers: [AuthService,OrderService,AuthGuard, 
     {provide: RECAPTCHA_V3_SITE_KEY, useValue: '<YOUR_SITE_KEY>'},
@@ -74,6 +84,7 @@ import { OrderListComponent } from './components/order-list/order-list.component
     },
   ],
   bootstrap: [AppComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   entryComponents: [
     ModalOrderEditComponent
   ]

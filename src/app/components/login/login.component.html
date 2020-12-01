@@ -17,19 +17,19 @@
       <!--Body-->
       <div class="modal-body mb-1">
 
-        <h5 class="mt-1 mb-2 text-center">Log In</h5>
+        <h5 class="mt-1 mb-2 text-center" style="font-size: 17px;">Log In</h5>
          <!-- Register -->
-         <p style="margin-left: 40px; margin-top: 13px; font-size: 12px;">New To EdeliveryMate ?
-          <a  (click)="openSignUpPage()">SIGN UP</a>
+         <p style="margin-left: 50px; margin-top: 15px; font-size: 11px;">New To EdeliveryMate ?
+          <a  (click)="openSignUpPage()" style="color: rgb(207, 124, 75);">SIGN UP</a>
         </p>
 
             <!-- Default form login -->
-          <form class="text-center" (submit)="loginUser($event)">
+          <form class="text-center" (submit)="loginUser($event)" style="margin-top: 10px;">
 
             <!-- Email -->
             <div>
               <input type="text" id="emailInput" [formControl]="loginFormModalEmail" class="form-control mb-4" placeholder="Enter email address" style="font-size: 11px;"
-                mdbInput mdbValidate>
+                mdbInput mdbValidate required>
               <mdb-error
               *ngIf="loginFormModalEmail.invalid && (loginFormModalEmail.dirty || loginFormModalEmail.touched)">
             </mdb-error>
@@ -40,8 +40,8 @@
           </div>
            <div>
               <!-- Password -->
-              <input type="password" id="passwordInput" class="form-control mb-4" placeholder="Enter password" style="font-size: 11px;"
-              mdbInput mdbValidate>
+              <input type="password" id="passwordInput"  class="form-control mb-4" placeholder="Enter password" style="font-size: 11px;"
+              mdbInput mdbValidate required>
               <mdb-error
               *ngIf="loginFormModalEmail.invalid && (loginFormModalEmail.dirty || loginFormModalEmail.touched)">
               </mdb-error>
@@ -57,7 +57,7 @@
               </div>
               <div>
                 <!-- Forgot password -->
-                <a href="">can't log in?</a>
+                <a (click)="openResetPage()"  style="color: rgb(207, 124, 75);" >can't log in?</a>
               </div>
             </div>
 

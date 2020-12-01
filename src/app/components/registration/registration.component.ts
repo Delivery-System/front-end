@@ -1,10 +1,13 @@
 // built-in modules
-import { Component, OnInit } from '@angular/core';
-import {FormControl, FormGroup, Validators} from "@angular/forms";
+import { Component, OnInit,ElementRef,ChangeDetectorRef,ViewChild} from '@angular/core';
+import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import { Router } from '@angular/router';
+import {MDBModalRef, MDBModalService,MdbTableDirective, ModalDirective} from "angular-bootstrap-md";
 
 // custom modules
 import { AuthService } from 'src/app/services/auth.service';
+import { LoginComponent } from '../login/login.component';
+
 
 @Component({
   selector: 'app-registration',
@@ -13,14 +16,24 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class RegistrationComponent implements OnInit {
 
+  @ViewChild(MdbTableDirective, { static: true }) mdbTable: MdbTableDirective;
+  @ViewChild('row', { static: true }) row: ElementRef;
+  @ViewChild('frame') public showModalOnClick: ModalDirective;
+
+  modalRef: MDBModalRef;
+  firstFormGroup: FormGroup;
+  secondFormGroup: FormGroup;
+  // isOptional = false;
+
+  selectedRole = 'end-user';
+  phoneNo="092909943";
   items: any[] = [
     { id: 1, name: 'User' },
     { id: 2, name: 'Dasher' },
     { id: 3, name: 'Business' }
   ]
-  selected: number = 1;
-  constructor(private authService:AuthService, private router:Router) {
-
+ 
+  constructor(private _formBuilder: FormBuilder,private authService:AuthService, private router:Router,private cdRef: ChangeDetectorRef,private modalService: MDBModalService) {
    }
 
   validatingForm: FormGroup;
@@ -32,8 +45,17 @@ export class RegistrationComponent implements OnInit {
       signupFormModalEmail: new FormControl('', Validators.email),
       signupFormModalPassword: new FormControl('', Validators.required),
     });
+
+    this.firstFormGroup = this._formBuilder.group({
+      firstCtrl: ['', Validators.required]
+    });
+    this.secondFormGroup = this._formBuilder.group({
+      secondCtrl: ''
+    });
   }
 
+  // for phone imput
+  
   get signupFormModalName() {
     return this.validatingForm.get('signupFormModalName');
   }
@@ -52,33 +74,52 @@ export class RegistrationComponent implements OnInit {
     //getted from event
     console.log(id);
     //getted from binding
-    console.log(this.selected)
+    // console.log(this.selected)
   }
   registerUser(event){
     console.log('register button clicked');
     const targetValue=event.target;
     const firstName=targetValue.querySelector('#firstName').value;
+    console.log(firstName);
     const lastName=targetValue.querySelector('#lastName').value;
     const userName=targetValue.querySelector('#userName').value;
-    const phoneNumber= targetValue.querySelector('#phoneNumber').value;
+    // const phoneNumber= targetValue.querySelector('#phoneNumber').value;
     const email= targetValue.querySelector('#email').value;
-    // const role= targetValue.querySelector('#role').text();
-    const password=targetValue.querySelector('#passwod').value;
+    const password=targetValue.querySelector('#password').value;
     const confirmPassword=targetValue.querySelector('#confirmPassword').value;
-    console.log(firstName,lastName,userName, phoneNumber,email,this.selected,password,confirmPassword);
+    console.log(this.selectedRole);
+    console.log(firstName,lastName,userName, this.phoneNo,email,this.selectedRole,password, confirmPassword);
     if(password !== confirmPassword ){
       alert('password not matched');
     }
     else{
       console.log('ready to login');
-      this.authService.userRegisterDetail(firstName,lastName,userName,phoneNumber,email,this.selected,password,confirmPassword)
+      this.authService.userRegisterDetail(firstName,lastName,userName,this.phoneNo,email,this.selectedRole,password)
       .subscribe((res)=>{
           if(res.success){
              console.log(res);
-            this.router.navigate(['login']);
+            // this.router.navigate(['login']);
 
           }
       });
     }
+  }
+
+  // launch to login modal page
+  openLoginPage(){
+    console.log('already have an account');
+    console.log('signup page clicked');
+    const modalOptions = {
+      backdrop: true, keyboard: true, focus: true, show: true,
+      ignoreBackdropClick: false, animated: true, containerClass: 'overflow-auto',
+      class: 'modal-sm',
+      data: {
+        editableRow: ''
+      }
+    };
+    
+    // this.showModalOnClick.hide();
+    this.modalRef = this.modalService.show(LoginComponent, modalOptions);
+ 
   }
 }
