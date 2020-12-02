@@ -8,6 +8,8 @@ import {MDBModalRef, MDBModalService,MdbTableDirective, ModalDirective} from "an
 
 // custom modules
 import { AuthService } from 'src/app/services/auth.service';
+import { RegistrationComponent } from '../registration/registration.component';
+
 
 @Component({
   selector: 'app-reset-password',
@@ -19,7 +21,7 @@ export class ResetPasswordComponent implements OnInit {
   
   @ViewChild(MdbTableDirective, { static: true }) mdbTable: MdbTableDirective;
   @ViewChild('row', { static: true }) row: ElementRef;
-  @ViewChild('frame') public showModalOnClick: ModalDirective;
+  @ViewChild('reset') public showModalOnClick: ModalDirective;
 
   modalRef: MDBModalRef;
 
@@ -48,7 +50,20 @@ export class ResetPasswordComponent implements OnInit {
     
   }
   openSignUpPage(){
+    console.log('already have an account');
+    console.log('signup page clicked');
+    const modalOptions = {
+      backdrop: true, keyboard: true, focus: true, show: true,
+      ignoreBackdropClick: false, animated: true, containerClass: 'overflow-auto',
+      class: 'modal-md',
+      data: {
+        editableRow: ''
+      }
+    };
     
+    this.showModalOnClick.hide();
+    this.modalRef = this.modalService.show(RegistrationComponent, modalOptions);
+ 
   }
 
 }

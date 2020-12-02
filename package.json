@@ -14,7 +14,7 @@
     "@agm/core": "^3.0.0-beta.0",
     "@angular-material-components/file-input": "^4.0.1",
     "@angular/animations": "~10.2.0",
-    "@angular/cdk": "^11.0.0",
+    "@angular/cdk": "^11.0.1",
     "@angular/common": "~10.2.0",
     "@angular/compiler": "~10.2.0",
     "@angular/core": "~10.2.0",

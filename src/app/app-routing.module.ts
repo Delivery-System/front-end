@@ -13,6 +13,8 @@ import { AdminDeliveryComponent } from './components/admin-delivery/admin-delive
 import { AgentDeliveryComponent } from './components/agent-delivery/agent-delivery.component';
 import { CompanyDeliveryComponent } from './components/company-delivery/company-delivery.component';
 import { DeliveryComponent } from './components/delivery/delivery.component';
+import { LoginDefaultComponent } from './components/login-default/login-default.component';
+LoginDefaultComponent
 
 const routes: Routes = [
   {
@@ -42,6 +44,10 @@ const routes: Routes = [
     path:'user/endUser',
     component:EdeliveryComponent,
     // canActivate:[AuthGuard]
+  },
+  {
+    path:'defualtLogin',
+    component:LoginDefaultComponent
   },
   {
     path:'login',

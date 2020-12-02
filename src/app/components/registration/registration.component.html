@@ -62,7 +62,7 @@
 <!-- <hr> -->
 <!-- </form> -->
 <!-- Default form register -->
-
+<!-- <div mdbModal #register="mdbModal"> -->
 <mat-horizontal-stepper linear #stepper>
   <mat-step [stepControl]="firstFormGroup">
     <form [formGroup]="firstFormGroup" (submit)="registerUser ($event)">
@@ -152,11 +152,43 @@
               <mat-option value="Company">Company</mat-option>
             </mat-select>
           </mat-form-field>
-          
         </div>
       </div>
 
-    
+      <div class="form-row mb-4">
+        <div class="col">
+          <!-- phone number -->
+          <!-- <mat-form-field class="example-full-width">
+            <mat-label>Telephone</mat-label>
+            <span matPrefix>+1 &nbsp;</span>
+            <input type="tel" matInput placeholder="555-555-1234">
+            <mat-icon matSuffix>mode_edit</mat-icon>
+          </mat-form-field> -->
+          <div [formGroup]="form">
+            <mat-form-field appearance="fill">
+              <mat-label>Phone number</mat-label>
+              <app-telephone-field formControlName="tel" required></app-telephone-field>
+              <mat-icon matSuffix>phone</mat-icon>
+              <!-- <mat-hint>Include area code</mat-hint> -->
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="col">
+          <!-- upload file-->
+          <mat-form-field class="columns">
+            <mat-label *ngIf="selectedFiles; else newFile">{{selectedFiles.item(0).name}}</mat-label>
+            <ng-template #newFile>
+                <mat-label>Choose file</mat-label>
+            </ng-template>
+            <input matInput disabled>
+            <button mat-icon-button matSuffix (click)="fileInput.click()">
+                <mat-icon>attach_file</mat-icon>
+            </button>
+            <input hidden (change)="selectFile($event)" #fileInput type="file" id="file">
+        </mat-form-field>
+        </div>
+      </div>
+   
       <div>
         <button mat-button matStepperPrevious>Back</button>
         <button mat-button color="primary" matStepperNext>Next</button>
@@ -172,3 +204,4 @@
     </div>
   </mat-step>
 </mat-horizontal-stepper>
+<!-- </div> -->

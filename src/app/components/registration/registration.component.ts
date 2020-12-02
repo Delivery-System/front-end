@@ -4,9 +4,11 @@ import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import { Router } from '@angular/router';
 import {MDBModalRef, MDBModalService,MdbTableDirective, ModalDirective} from "angular-bootstrap-md";
 
+
 // custom modules
 import { AuthService } from 'src/app/services/auth.service';
-import { LoginComponent } from '../login/login.component';
+import { LoginDefaultComponent } from '../login-default/login-default.component';
+import { MyTel } from 'src/app/modals/myTel';
 
 
 @Component({
@@ -18,20 +20,25 @@ export class RegistrationComponent implements OnInit {
 
   @ViewChild(MdbTableDirective, { static: true }) mdbTable: MdbTableDirective;
   @ViewChild('row', { static: true }) row: ElementRef;
-  @ViewChild('frame') public showModalOnClick: ModalDirective;
+  // @ViewChild('register') public showModalOnClick: ModalDirective;
 
   modalRef: MDBModalRef;
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
   // isOptional = false;
 
-  selectedRole = 'end-user';
+  form: FormGroup = new FormGroup({
+    tel: new FormControl(new MyTel('', '', ''))
+  });
+
+  selectedRole = 'agent';
   phoneNo="092909943";
   items: any[] = [
     { id: 1, name: 'User' },
     { id: 2, name: 'Dasher' },
     { id: 3, name: 'Business' }
   ]
+  selectedFiles: any;
  
   constructor(private _formBuilder: FormBuilder,private authService:AuthService, private router:Router,private cdRef: ChangeDetectorRef,private modalService: MDBModalService) {
    }
@@ -94,7 +101,7 @@ export class RegistrationComponent implements OnInit {
     }
     else{
       console.log('ready to login');
-      this.authService.userRegisterDetail(firstName,lastName,userName,this.phoneNo,email,this.selectedRole,password)
+      this.authService.agentRegisterDetail(firstName,lastName,userName,this.phoneNo,email,this.selectedRole,password)
       .subscribe((res)=>{
           if(res.success){
              console.log(res);
@@ -119,7 +126,12 @@ export class RegistrationComponent implements OnInit {
     };
     
     // this.showModalOnClick.hide();
-    this.modalRef = this.modalService.show(LoginComponent, modalOptions);
+    this.modalRef = this.modalService.show(LoginDefaultComponent, modalOptions);
  
   }
+
+  // upload file
+  selectFile(event) {
+    this.selectedFiles = event.target.files;
+}
 }

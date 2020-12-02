@@ -1,3 +1,4 @@
+
 // built-in modules
 import { Component, OnInit, ViewChild, ElementRef, ChangeDetectorRef } from '@angular/core';
 import { FormControl, FormGroup, Validators } from "@angular/forms";
@@ -12,11 +13,12 @@ import { ResetPasswordComponent } from '../reset-password/reset-password.compone
 
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  selector: 'app-login-default',
+  templateUrl: './login-default.component.html',
+  styleUrls: ['./login-default.component.scss']
 })
-export class LoginComponent implements OnInit {
+export class LoginDefaultComponent implements OnInit {
+
   @ViewChild(MdbTableDirective, { static: true }) mdbTable: MdbTableDirective;
   @ViewChild('row', { static: true }) row: ElementRef;
   @ViewChild('frame') public showModalOnClick: ModalDirective;
@@ -51,15 +53,11 @@ export class LoginComponent implements OnInit {
       ignoreBackdropClick: false, animated: true, containerClass: 'overflow-auto',
       class: 'modal-md',
       data: {
-        // editableRow: ''
+        editableRow: ''
       }
     };
     this.showModalOnClick.hide();
     this.modalRef = this.modalService.show(RegistrationComponent, modalOptions);
-    // this.modalRef.content.saveButtonClicked.subscribe((newElement: any) => {
-    //   this.elements[elementIndex] = newElement;
-    // });
-    // this.mdbTable.setDataSource(this.elements);
   }
 
   // reset modal
@@ -107,33 +105,18 @@ export class LoginComponent implements OnInit {
               const stringifiedToken = encodeURIComponent(JSON.stringify(res.token));
               console.log('token:', stringifiedToken);
               const path = 'http://localhost:4000/dashboard' + '?data=' + stringifiedToken;
-              window.open(path,"_self");
+              window.open(path);
               return;
             }
           }
-          // if(username == 'hena'){
-          //   this.router.navigate(['user/endUser']);
-          //   this.authService.setLoggedIn(true);
-          // }
-          // if(username == 'agent'){
-          //   this.router.navigate(['user/agent']);
-          //   this.authService.setLoggedIn(true);
-          // }
-          // if(username == 'admin'){
-          //   this.router.navigate(['user/admin']);
-          //   this.authService.setLoggedIn(true);
-          // }
-          // if(username == 'company'){
-          //   this.router.navigate(['user/company']);
-          //   this.authService.setLoggedIn(true);
-          // }
-          // else{
-          //   this.router.navigate(['order']);
-          //   this.authService.setLoggedIn(true);
-          // }
+         
         }
       });;
 
   }
 
 }
+
+  
+
+

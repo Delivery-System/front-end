@@ -202,6 +202,7 @@ export class EdeliveryComponent implements OnInit, AfterViewInit {
     const targetValue= event.target;
     this.orderService.orderDeliveryDetail(this.item,this.sourceAdd,this.destAdd,this.deliveryDate,this.status,this.orderer,this.receiver,this.Assignee).subscribe((res)=>{
         console.log('order succeded');
+        console.log(res);
     })
   }
 

@@ -36,6 +36,8 @@ import { CompanyDeliveryComponent } from './components/company-delivery/company-
 import { OrderListComponent } from './components/order-list/order-list.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
+import { LoginDefaultComponent } from './components/login-default/login-default.component';
+import { TelephoneFieldComponent } from './components/telephone-field/telephone-field.component';
 
 
 @NgModule({
@@ -52,7 +54,9 @@ import { ResetPasswordComponent } from './components/reset-password/reset-passwo
     AgentDeliveryComponent,
     CompanyDeliveryComponent,
     OrderListComponent,
-    ResetPasswordComponent
+    ResetPasswordComponent,
+    LoginDefaultComponent,
+    TelephoneFieldComponent
   ],
   imports: [
     BrowserModule,

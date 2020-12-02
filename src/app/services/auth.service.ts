@@ -26,7 +26,7 @@ export class AuthService {
      });
   }
 
-  // post the login info to api server
+  // post the user info to api server
   userRegisterDetail(firstName,lastName,username,phoneNumber,email,role,password):Observable<UserRegister>{
     return this.http.post<UserRegister>(' http://localhost:3000/users/register',{
       firstName,
@@ -39,6 +39,20 @@ export class AuthService {
     });
 
   }
+
+    // post the agent info to api server
+    agentRegisterDetail(firstName,lastName,username,phoneNumber,email,role,password):Observable<UserRegister>{
+      return this.http.post<UserRegister>(' http://localhost:3000/waitingAgents/register',{
+        firstName,
+        lastName,
+        username,
+        phoneNumber,
+        email,
+        role,
+        password
+      });
+  
+    }
   
   setLoggedIn(status: boolean){
     this.loggedInStatus= status;

@@ -1,0 +1,64 @@
+<div mdbModal #login="mdbModal">
+
+  <h5 class="mt-1 mb-2 text-center" style="font-size: 17px;">Log In</h5>
+  <!-- Register -->
+  <p style="margin-left: 50px; margin-top: 15px; font-size: 11px;">New To EdeliveryMate ?
+    <a (click)="openSignUpPage()" style="color: rgb(207, 124, 75);">SIGN UP</a>
+  </p>
+
+  <!-- Default form login -->
+  <form class="text-center" (submit)="loginUser($event)" style="margin-top: 10px;">
+
+    <!-- Email -->
+    <div>
+      <input type="text" id="emailInput" [formControl]="loginFormModalEmail" class="form-control mb-4"
+        placeholder="Enter email address" style="font-size: 11px;" mdbInput mdbValidate required>
+      <mdb-error *ngIf="loginFormModalEmail.invalid && (loginFormModalEmail.dirty || loginFormModalEmail.touched)">
+      </mdb-error>
+      <mdb-success *ngIf="loginFormModalEmail.valid && (loginFormModalEmail.dirty || loginFormModalEmail.touched)">
+
+      </mdb-success>
+    </div>
+    <div>
+      <!-- Password -->
+      <input type="password" id="passwordInput" class="form-control mb-4" placeholder="Enter password"
+        style="font-size: 11px;" mdbInput mdbValidate required>
+      <mdb-error *ngIf="loginFormModalEmail.invalid && (loginFormModalEmail.dirty || loginFormModalEmail.touched)">
+      </mdb-error>
+      <mdb-success *ngIf="loginFormModalEmail.valid && (loginFormModalEmail.dirty || loginFormModalEmail.touched)">
+      </mdb-success>
+    </div>
+
+    <div class="d-flex justify-content-around" style="font-size: 13px;">
+      <div>
+        <!-- Remember me -->
+        <mdb-checkbox [default]="true">Keep me logged in</mdb-checkbox>
+      </div>
+      <div>
+        <!-- Forgot password -->
+        <a (click)="openResetPage()" style="color: rgb(207, 124, 75);">can't log in?</a>
+      </div>
+    </div>
+
+    <!-- Sign in button -->
+    <button mdbBtn color="info" block="true" class="my-4" type="submit">Log in</button>
+
+    <!-- Social login -->
+    <p>or log in with:</p>
+
+    <a type="button" class="light-blue-text mx-2">
+      <mdb-icon fab icon="google"></mdb-icon>
+    </a>
+    <a type="button" class="light-blue-text mx-2">
+      <mdb-icon fab icon="twitter"></mdb-icon>
+    </a>
+    <a type="button" class="light-blue-text mx-2">
+      <mdb-icon fab icon="linkedin"></mdb-icon>
+    </a>
+    <a type="button" class="light-blue-text mx-2">
+      <mdb-icon fab icon="github"></mdb-icon>
+    </a>
+
+  </form>
+  <!-- Default form login -->
+</div>
