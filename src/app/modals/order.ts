@@ -4,6 +4,7 @@
 import { UserProfile } from '../modals/userProfile'
 import { Item } from '../modals/item';
 import { Status } from '../modals/status';
+import { User } from './user';
 
 export interface Order{
      _id: String;
@@ -12,7 +13,7 @@ export interface Order{
      destinationAddress: String;
      deliveryDate: Date;
      status: Status;
-     orderer: UserProfile;
-     receiver: UserProfile;
-     assignee: UserProfile;
+     orderer: User;
+     receiver: User;
+     assignee: User;
 }

@@ -1,7 +1,7 @@
 <!-- body content -->
 <div class="dynamicContent">
-    
-    
+
+
 </div>
 
 <!-- first Navbar-->
@@ -52,8 +52,8 @@
             <li class="nav-item avatar dropdown" dropdown>
                 <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light"
                     mdbWavesEffect>
-                    <img src="../../../assets/mine.jpg" alt=""
-                        class="img-fluid rounded-circle z-depth-0" style="width: 30px;"></a>
+                    <img src="../../../assets/mine.jpg" alt="" class="img-fluid rounded-circle z-depth-0"
+                        style="width: 30px;"></a>
                 <div *dropdownMenu class="dropdown-menu dropdown-menu-right dropdown dropdown-primary" role="menu">
                     <a class="dropdown-item waves-light" mdbWavesEffect href="#">My account</a>
                     <a class="dropdown-item waves-light" mdbWavesEffect href="#">Log out</a>
@@ -138,47 +138,58 @@
             </li>
             <li class="nav-item">
                 <a class="nav-link active" href="#!" style="color: black;  font-weight: bold;">&nbsp;&nbsp; Feature
-                    <mdb-badge pill="true" info="true">New 2</mdb-badge></a>
+                    <mdb-badge pill="true" info="true">New 2</mdb-badge>
+                </a>
             </li>
             <li class="nav-item" class="refine" style="font-size: 15px;">
                 <a class="nav-link" href="#!"> <span></span>&nbsp;&nbsp;
-                    <mdb-checkbox [default]="true"> Special Offers(7)</mdb-checkbox></a>
-            </li>
-            <li class="nav-item" class="refine"  style="font-size: 15px;">
-                <a class="nav-link" href="#!"> <span></span>&nbsp;&nbsp; <mdb-checkbox [default]="true">Free Delivery(4)</mdb-checkbox> </a>
-            </li>
-           <br>
-
-            <li class="nav-item">
-                <a class="nav-link active" href="#!" style="color: black;  font-weight: bold;">&nbsp;&nbsp; Delivery Minimum
+                    <mdb-checkbox [default]="true"> Special Offers(7)</mdb-checkbox>
                 </a>
             </li>
             <li class="nav-item" class="refine" style="font-size: 15px;">
-                <a class="nav-link" href="#!"> <span></span>&nbsp;&nbsp;<!-- Default unchecked -->
-                    <mdb-checkbox [default]="true"> < 50 birr</mdb-checkbox></a>
+                <a class="nav-link" href="#!"> <span></span>&nbsp;&nbsp; <mdb-checkbox [default]="true">Free Delivery(4)
+                    </mdb-checkbox> </a>
+            </li>
+            <br>
+
+            <li class="nav-item">
+                <a class="nav-link active" href="#!" style="color: black;  font-weight: bold;">&nbsp;&nbsp; Delivery
+                    Minimum
+                </a>
             </li>
             <li class="nav-item" class="refine" style="font-size: 15px;">
-                <a class="nav-link" href="#!"> <span></span>&nbsp;&nbsp; <mdb-checkbox [default]="true"> < 100 birr</mdb-checkbox> </a>
+                <a class="nav-link" href="#!"> <span></span>&nbsp;&nbsp;
+                    <!-- Default unchecked -->
+                    <mdb-checkbox [default]="true">
+                        < 50 birr</mdb-checkbox>
+                </a>
             </li>
             <li class="nav-item" class="refine" style="font-size: 15px;">
-                <a class="nav-link" href="#!"> <span></span>&nbsp;&nbsp;<mdb-checkbox [default]="true"> < 200 birr</mdb-checkbox> </a>
+                <a class="nav-link" href="#!"> <span></span>&nbsp;&nbsp; <mdb-checkbox [default]="true">
+                        < 100 birr</mdb-checkbox> </a>
             </li>
             <li class="nav-item" class="refine" style="font-size: 15px;">
-                <a class="nav-link" href="#!"> <span></span>&nbsp;&nbsp; <mdb-checkbox [default]="true"> < 300 birr</mdb-checkbox></a>
+                <a class="nav-link" href="#!"> <span></span>&nbsp;&nbsp;<mdb-checkbox [default]="true">
+                        < 200 birr</mdb-checkbox> </a>
+            </li>
+            <li class="nav-item" class="refine" style="font-size: 15px;">
+                <a class="nav-link" href="#!"> <span></span>&nbsp;&nbsp; <mdb-checkbox [default]="true">
+                        < 300 birr</mdb-checkbox></a>
             </li>
 
             <li class="nav-item" style="font-size: 15px;">
-                <a class="nav-link active" href="#!" style="color: black;  font-weight: bold;">&nbsp;&nbsp; Delivery Estimate
+                <a class="nav-link active" href="#!" style="color: black;  font-weight: bold;">&nbsp;&nbsp; Delivery
+                    Estimate
                 </a>
             </li>
             <li class="nav-item" class="refine" style="font-size: 15px;">
-                <a class="nav-link" href="#!"> <span></span>&nbsp;&nbsp;  < 30 min</a>
+                <a class="nav-link" href="#!"> <span></span>&nbsp;&nbsp; < 30 min</a>
             </li>
             <li class="nav-item" class="refine" style="font-size: 15px;">
                 <a class="nav-link" href="#!"> <span></span>&nbsp;&nbsp; < 45 min</a>
             </li>
             <li class="nav-item" class="refine" style="font-size: 15px;">
-                <a class="nav-link" href="#!"> <span></span>&nbsp;&nbsp;  < 60 min </a>
+                <a class="nav-link" href="#!"> <span></span>&nbsp;&nbsp; < 60 min </a>
             </li>
         </ul>
     </div>
@@ -188,43 +199,157 @@
             <mdb-card-body>
                 <mdb-card-title>
                 </mdb-card-title>
-                <div class="container">
-                    <div class="row">
-                      <div class="col-md-6 mx-auto">
-                        <div class="md-form">
-                          <input type="text" class="form-control" [(ngModel)]="searchText" (keyup)="searchItems()" id="search-input"
-                                 mdbInput>
-                          <label for="search-input">Search</label>
-                        </div>
-                      </div>
-                      <table mdbTable #tableEl="mdbTable" stickyHeader="true" hover="true" striped="true" class="z-depth-1">
-                        <thead class="sticky-top">
-                        <tr>
-                          <th *ngFor="let head of headElements; let i = index" [mdbTableSort]="elements" [sortBy]="headElements[i]"
-                              scope="col">{{head | titlecase}} <mdb-icon fas icon="sort"></mdb-icon>
-                          </th>
-                        </tr>
-                        </thead>
-                        <tbody #row>
-                        <tr mdbTableCol (rowCreated)="onRowCreate($event)" (rowRemoved)="onRowRemove($event)" *ngFor="let el of elements; let i = index">
-                          <th *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex" scope="row">{{el.id}}</th>
-                          <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex" class="red-text">{{el.first}}</td>
-                          <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex">{{el.last}}</td>
-                          <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex">{{el.handle}}</td>
-                        </tr>
-                        </tbody>
-                        <tfoot class="grey lighten-5 w-100">
-                        <tr>
-                          <td colspan="4">
-                            <mdb-table-pagination [tableEl]="tableEl" paginationAlign="" [searchDataSource]="elements"></mdb-table-pagination>
-                          </td>
-                        </tr>
-                        </tfoot>
-                      </table>
+                <div style="display: flex; padding-right: 20px;">
+                    <div>
+                        <mat-card class="example-card">
+                            <mat-card-header>
+                                <div mat-card-avatar class="example-header-image"></div>
+                                <mat-card-title>Shiba Inu</mat-card-title>
+                                <mat-card-subtitle>Dog Breed</mat-card-subtitle>
+                            </mat-card-header>
+                            <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg"
+                                alt="Photo of a Shiba Inu">
+                            <mat-card-content>
+                                <p>
+                                    The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog
+                                    from Japan.
+                                    A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was
+                                    originally
+                                    bred for hunting.
+                                </p>
+                            </mat-card-content>
+                            <mat-card-actions>
+                                <button mat-button>LIKE</button>
+                                <button mat-button>SHARE</button>
+                            </mat-card-actions>
+                        </mat-card>
                     </div>
-                  </div>
+                    <div>
+                        <mat-card class="example-card">
+                            <mat-card-header>
+                                <div mat-card-avatar class="example-header-image"></div>
+                                <mat-card-title>Shiba Inu</mat-card-title>
+                                <mat-card-subtitle>Dog Breed</mat-card-subtitle>
+                            </mat-card-header>
+                            <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg"
+                                alt="Photo of a Shiba Inu">
+                            <mat-card-content>
+                                <p>
+                                    The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog
+                                    from Japan.
+                                    A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was
+                                    originally
+                                    bred for hunting.
+                                </p>
+                            </mat-card-content>
+                            <mat-card-actions>
+                                <button mat-button>LIKE</button>
+                                <button mat-button>SHARE</button>
+                            </mat-card-actions>
+                        </mat-card>
+                    </div>
+                    <div>
+                        <mat-card class="example-card">
+                            <mat-card-header>
+                                <div mat-card-avatar class="example-header-image"></div>
+                                <mat-card-title>Shiba Inu</mat-card-title>
+                                <mat-card-subtitle>Dog Breed</mat-card-subtitle>
+                            </mat-card-header>
+                            <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg"
+                                alt="Photo of a Shiba Inu">
+                            <mat-card-content>
+                                <p>
+                                    The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog
+                                    from Japan.
+                                    A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was
+                                    originally
+                                    bred for hunting.
+                                </p>
+                            </mat-card-content>
+                            <mat-card-actions>
+                                <button mat-button>LIKE</button>
+                                <button mat-button>SHARE</button>
+                            </mat-card-actions>
+                        </mat-card>
+                    </div>
+                </div>
 
-                 
+                <!-- row 2 -->
+                <div style="display: flex;">
+                    <div>
+                        <mat-card class="example-card">
+                            <mat-card-header>
+                                <div mat-card-avatar class="example-header-image"></div>
+                                <mat-card-title>Shiba Inu</mat-card-title>
+                                <mat-card-subtitle>Dog Breed</mat-card-subtitle>
+                            </mat-card-header>
+                            <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg"
+                                alt="Photo of a Shiba Inu">
+                            <mat-card-content>
+                                <p>
+                                    The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog
+                                    from Japan.
+                                    A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was
+                                    originally
+                                    bred for hunting.
+                                </p>
+                            </mat-card-content>
+                            <mat-card-actions>
+                                <button mat-button>LIKE</button>
+                                <button mat-button>SHARE</button>
+                            </mat-card-actions>
+                        </mat-card>
+                    </div>
+                    <div>
+                        <mat-card class="example-card">
+                            <mat-card-header>
+                                <div mat-card-avatar class="example-header-image"></div>
+                                <mat-card-title>Shiba Inu</mat-card-title>
+                                <mat-card-subtitle>Dog Breed</mat-card-subtitle>
+                            </mat-card-header>
+                            <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg"
+                                alt="Photo of a Shiba Inu">
+                            <mat-card-content>
+                                <p>
+                                    The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog
+                                    from Japan.
+                                    A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was
+                                    originally
+                                    bred for hunting.
+                                </p>
+                            </mat-card-content>
+                            <mat-card-actions>
+                                <button mat-button>LIKE</button>
+                                <button mat-button>SHARE</button>
+                            </mat-card-actions>
+                        </mat-card>
+                    </div>
+                    <div>
+                        <mat-card class="example-card">
+                            <mat-card-header>
+                                <div mat-card-avatar class="example-header-image"></div>
+                                <mat-card-title>Shiba Inu</mat-card-title>
+                                <mat-card-subtitle>Dog Breed</mat-card-subtitle>
+                            </mat-card-header>
+                            <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg"
+                                alt="Photo of a Shiba Inu">
+                            <mat-card-content>
+                                <p>
+                                    The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog
+                                    from Japan.
+                                    A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was
+                                    originally
+                                    bred for hunting.
+                                </p>
+                            </mat-card-content>
+                            <mat-card-actions>
+                                <button mat-button>LIKE</button>
+                                <button mat-button>SHARE</button>
+                            </mat-card-actions>
+                        </mat-card>
+                    </div>
+                </div>
+
             </mdb-card-body>
         </mdb-card>
     </div>
@@ -245,7 +370,8 @@
     <a href="https://github.com/angular/angular" target="_blank" rel="noopener">
         <svg class="material-icons" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
             <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z" fill="#1976d2" />
-            <path d="M0 0h24v24H0z" fill="none" /></svg>
+            <path d="M0 0h24v24H0z" fill="none" />
+        </svg>
     </a>
 </footer>
 

@@ -82,10 +82,14 @@ export class LoginComponent implements OnInit {
     // event.preventDefault();
     console.log(event);
     const targetValue = event.target;
-    const username = targetValue.querySelector('#emailInput').value;
+    const email = targetValue.querySelector('#emailInput').value;
     const password = targetValue.querySelector('#passwordInput').value;
-    console.log(username, password);
-    this.authService.userLoginDetail(username, password)
+    console.log(email, password);
+    const user = {
+      email: email,
+      password: password
+    }
+    this.authService.userLoginDetail(user)
       .subscribe(res => {
         console.log('server response:', res);
         if (res.success) {
@@ -106,7 +110,7 @@ export class LoginComponent implements OnInit {
             if (res.user.account.role == 'admin') {
               const stringifiedToken = encodeURIComponent(JSON.stringify(res.token));
               console.log('token:', stringifiedToken);
-              const path = 'http://localhost:4000/dashboard' + '?data=' + stringifiedToken;
+              const path = 'http://localhost:4000/login' + '?data=' + stringifiedToken;
               window.open(path,"_self");
               return;
             }

@@ -3,6 +3,7 @@ import { Component, OnInit, ViewChild, HostListener, AfterViewInit, ChangeDetect
 import { RecaptchaFormsModule, ReCaptchaV3Service } from 'ng-recaptcha';
 import { MdbTablePaginationComponent, MdbTableDirective  } from 'angular-bootstrap-md';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
+import { Router } from '@angular/router';
 
 // custom module
 import { OrderService } from 'src/app/services/order.service';
@@ -10,6 +11,7 @@ import { Item } from 'src/app/modals/item';
 import { Status } from 'src/app/modals/status';
 import { UserProfile } from 'src/app/modals/userProfile';
 import { Role } from 'src/app/modals/role';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-edelivery',
@@ -18,7 +20,7 @@ import { Role } from 'src/app/modals/role';
 })
 export class EdeliveryComponent implements OnInit, AfterViewInit {
   validatingForm: FormGroup;
-
+  orderMyRequest:any=[];
   items: any[] = [
     { id: 1, name: 'Document ' },
     { id: 2, name: 'Electronics' },
@@ -79,7 +81,7 @@ export class EdeliveryComponent implements OnInit, AfterViewInit {
   paymentStatus = false;
   bonusStatus = false;
 
-  constructor(private cdRef: ChangeDetectorRef, private recaptchaV3Service: ReCaptchaV3Service, private orderService:OrderService) { }
+  constructor(private cdRef: ChangeDetectorRef, private recaptchaV3Service: ReCaptchaV3Service, private orderService:OrderService, private authService:AuthService, private router:Router) { }
   ngOnInit(): void {
     this.validatingForm = new FormGroup({
       modalFormAvatarPassword: new FormControl('', Validators.required)
@@ -200,11 +202,25 @@ export class EdeliveryComponent implements OnInit, AfterViewInit {
   orderDelivery(event){
     console.log('add to  clicked');
     const targetValue= event.target;
-    this.orderService.orderDeliveryDetail(this.item,this.sourceAdd,this.destAdd,this.deliveryDate,this.status,this.orderer,this.receiver,this.Assignee).subscribe((res)=>{
+    this.orderService.orderDeliveryDetail(this.item,this.sourceAdd,this.destAdd,this.deliveryDate,this.status,this.orderer,this.receiver).subscribe((res)=>{
         console.log('order succeded');
         console.log(res);
     })
   }
 
+  getMyOrders(){
+    console.log('get order');
+    this.orderService.getOrder().subscribe((res)=>{
+      console.log('order succeded',res);
+      this.orderMyRequest=res;
+      console.log('requested order:',this.orderMyRequest);
+    });
+  }
 
+  logout(){
+    console.log('logout clicked');
+    this.authService.logout();
+    this.router.navigate(['/']);
+    return false;
+  }
 }

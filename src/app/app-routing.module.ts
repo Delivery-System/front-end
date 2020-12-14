@@ -14,12 +14,22 @@ import { AgentDeliveryComponent } from './components/agent-delivery/agent-delive
 import { CompanyDeliveryComponent } from './components/company-delivery/company-delivery.component';
 import { DeliveryComponent } from './components/delivery/delivery.component';
 import { LoginDefaultComponent } from './components/login-default/login-default.component';
-LoginDefaultComponent
+import { PaymentComponent } from './components/payment/payment.component';
+import { OrderTableComponent } from './components/order-table/order-table.component';
+import { Role } from './modals/role';
 
 const routes: Routes = [
   {
     path:'order',
     component:OrderComponent
+  },
+  {
+    path:'orderTable',
+    component:OrderTableComponent
+  },
+  {
+    path:'payment',
+    component:PaymentComponent
   },
   {
     path:'order/delivery',
@@ -28,7 +38,8 @@ const routes: Routes = [
   {
     path:'user/admin',
     component:AdminDeliveryComponent,
-    // canActivate:[AuthGuard]
+    canActivate: [AuthGuard],
+    data: { roles: [Role.Admin] }
   },
   {
     path:'user/company',
@@ -38,12 +49,14 @@ const routes: Routes = [
   {
     path:'user/agent',
     component:AgentDeliveryComponent,
-    // canActivate:[AuthGuard]
+    canActivate: [AuthGuard],
+    data: { roles: [Role.Agent] }
   },
   {
     path:'user/endUser',
     component:EdeliveryComponent,
-    // canActivate:[AuthGuard]
+    canActivate: [AuthGuard],
+    data: { roles: [Role.EndUser] }
   },
   {
     path:'defualtLogin',

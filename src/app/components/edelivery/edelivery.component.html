@@ -50,7 +50,7 @@
                         class="img-fluid rounded-circle z-depth-0" style="width: 30px;"></a>
                 <div *dropdownMenu class="dropdown-menu dropdown-menu-right dropdown dropdown-primary" role="menu">
                     <a class="dropdown-item waves-light" mdbWavesEffect href="#">My account</a>
-                    <a class="dropdown-item waves-light" mdbWavesEffect href="#">Log out</a>
+                    <a class="dropdown-item waves-light" mdbWavesEffect (click)="logout()">Log out</a>
                 </div>
             </li>
         </ul>
@@ -184,7 +184,7 @@
 
                                 <!--Header-->
                                 <div class="modal-header">
-                                    <img src="../../../assets/mine.jpg" alt="avatar"
+                                    <img src="../../../assets/user3.jpg" alt="avatar"
                                         class="rounded-circle img-responsive">
                                 </div>
                                 <!--Body-->
@@ -245,8 +245,9 @@
     <div class="contentRight" *ngIf='orderStatus'>
         <mdb-card class="orderCard">
             <mdb-card-body class="orderHistory">
+                <app-order-table></app-order-table>
                 <!-- Search form -->
-                <form class="form-inline md-form form-sm active-purple-2">
+                <!-- <form class="form-inline md-form form-sm active-purple-2">
                     <input class="form-control form-control-sm mr-3 w-75" type="text" placeholder="Search"
                         aria-label="Search" mdbInput>
                     <mdb-icon fas icon="search" aria-hidden="true"></mdb-icon>
@@ -258,15 +259,16 @@
                 <div class="orderListMessage">
                     <p>Do you want Order for delivery? Start to order!</p>
                 </div>
-
-                <div class="orderListMessage">
-                    <button mdbBtn type="button" (click)="frameOrder.show()" class="btn-md" color="info" outline="true"
+-->
+                <!-- <div class="orderListMessage">
+                    <button mdbBtn type="button"  routerLink='/order'  class="btn-md" color="info" outline="true"
                         mdbWavesEffect> Order
-                        Now</button>
-                </div>
+                        Now</button>  -->
+                        <!-- (click)="frameOrder.show()" -->
+                <!-- </div> -->
 
-                <div class="placeTaker">
-                    <table mdbTable striped="true">
+                <!-- <div class="placeTaker"> -->
+                    <!-- <table mdbTable striped="true">
                         <thead>
                             <tr>
                                 <th *ngFor="let head of headElements" scope="col">{{ head }}</th>
@@ -275,11 +277,11 @@
                         <tbody mdbTableCol *ngFor="let el of elements">
                             <tr>
                                 <td scope="row">
-                                    <button type="button" mdbBtn color="danger" class="master-button" mdbWavesEffect
+                                    <button type="button" mdbBtn color="info" class="master-button" mdbWavesEffect
                                         *ngIf="el.collapsed" (click)="el.collapsed = !el.collapsed">
                                         <mdb-icon fas icon="angle-down"></mdb-icon>
                                     </button>
-                                    <button type="button" mdbBtn color="success" class="master-button" mdbWavesEffect
+                                    <button type="button" mdbBtn color="info" class="master-button" mdbWavesEffect
                                         *ngIf="!el.collapsed" (click)="el.collapsed = !el.collapsed">
                                         <mdb-icon fas icon="angle-right"></mdb-icon>
                                     </button>
@@ -309,9 +311,9 @@
                                 </td>
                             </tr>
                         </tbody>
-                    </table>
+                    </table> -->
 
-                </div>
+                <!-- </div> -->
             </mdb-card-body>
         </mdb-card>
     </div>

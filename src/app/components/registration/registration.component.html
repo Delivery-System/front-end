@@ -1,71 +1,9 @@
-<!-- <form class="text-center border border-light p-5">
 
-  <p class="h4 mb-4">Sign up</p>
-
-  <div class="form-row mb-4">
-    <div class="col"> -->
-<!-- First name -->
-<!-- <input type="text" id="defaultRegisterFormFirstName" class="form-control" placeholder="First name">
-    </div>
-    <div class="col"> -->
-<!-- Last name -->
-<!-- <input type="text" id="defaultRegisterFormLastName" class="form-control" placeholder="Last name">
-    </div>
-  </div> -->
-
-<!-- Username -->
-<!-- <input type="username" id="username" class="form-control mb-4" placeholder="Username"> -->
-
-<!-- E-mail -->
-<!-- <input type="email" id="defaultRegisterFormEmail" class="form-control mb-4" placeholder="E-mail"> -->
-
-<!-- Password -->
-<!-- <input type="password" id="defaultRegisterFormPassword" class="form-control" placeholder="Password" aria-describedby="defaultRegisterFormPasswordHelpBlock"> -->
-<!-- <small id="defaultRegisterFormPasswordHelpBlock" class="form-text text-muted mb-4"> -->
-<!-- At least 8 characters and 1 digit -->
-<!-- </small> -->
-
-<!-- <div class="form-row mb-4"> -->
-<!-- <div class="col"> -->
-<!-- Phone number -->
-<!-- <input type="text" id="defaultRegisterPhonePassword" class="form-control" placeholder="Phone number" aria-describedby="defaultRegisterFormPhoneHelpBlock"> -->
-<!-- </div> -->
-<!-- <div class="col"> -->
-<!-- Last name -->
-<!-- <input type="text" id="defaultRegisterFormLastName" class="form-control" placeholder="Last name"> -->
-<!-- </div> -->
-<!-- </div> -->
-
-
-<!-- Sign up button -->
-<!-- <button mdbBtn color="info" block="true" class="my-4" style="border-radius: 30px;" type="submit">Sign in</button> -->
-
-<!-- Social register -->
-<!-- <p>or sign up with:</p> -->
-
-<!-- Sign up button -->
-<!-- <button mdbBtn color="info" block="true" class="my-4" style="border-radius: 30px;" type="submit"> <mdb-icon fab icon="google"></mdb-icon>Sign in with google</button> -->
-<!-- 
-  <a type="button" class="light-blue-text mx-2">
-    <mdb-icon fab icon="facebook"></mdb-icon>
-  </a>
-  <a type="button" class="light-blue-text mx-2">
-    <mdb-icon fab icon="twitter"></mdb-icon>
-  </a>
-  <a type="button" class="light-blue-text mx-2">
-    <mdb-icon fab icon="linkedin"></mdb-icon>
-  </a>
-  <a type="button" class="light-blue-text mx-2">
-    <mdb-icon fab icon="github"></mdb-icon>
-  </a> -->
-
-<!-- <hr> -->
-<!-- </form> -->
 <!-- Default form register -->
 <!-- <div mdbModal #register="mdbModal"> -->
 <mat-horizontal-stepper linear #stepper>
   <mat-step [stepControl]="firstFormGroup">
-    <form [formGroup]="firstFormGroup" (submit)="registerUser ($event)">
+    <form [formGroup]="firstFormGroup" (submit)="registerUserDetail($event)">
       <ng-template matStepLabel>Basic Info</ng-template>
       <div class="form-row mb-4">
         <div class="col">
@@ -132,7 +70,7 @@
    
   </mat-step>
   <mat-step [stepControl]="secondFormGroup" [optional]="true">
-    <form [formGroup]="secondFormGroup">
+    <form [formGroup]="secondFormGroup"  (submit)="registerUser($event)">
       <ng-template matStepLabel>Additional Info </ng-template>
       <div class="form-row mb-4">
         <div class="col">
@@ -184,14 +122,14 @@
             <button mat-icon-button matSuffix (click)="fileInput.click()">
                 <mat-icon>attach_file</mat-icon>
             </button>
-            <input hidden (change)="selectFile($event)" #fileInput type="file" id="file">
+            <input hidden (change)="selectFile($event.target.files)" #fileInput type="file" id="file">
         </mat-form-field>
         </div>
       </div>
    
       <div>
         <button mat-button matStepperPrevious>Back</button>
-        <button mat-button color="primary" matStepperNext>Next</button>
+        <button mat-button color="primary" type="submit" matStepperNext>Next</button>
       </div>
     </form>
   </mat-step>

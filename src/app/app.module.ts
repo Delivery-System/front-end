@@ -9,7 +9,8 @@ import { RecaptchaModule, RecaptchaFormsModule } from 'ng-recaptcha';
 import { RECAPTCHA_SETTINGS, RecaptchaSettings } from 'ng-recaptcha';
 import { RECAPTCHA_LANGUAGE } from 'ng-recaptcha';
 import { RecaptchaLoaderService } from 'ng-recaptcha';
-
+import { NgxStripeModule } from 'ngx-stripe';
+// import * as mapboxgl from 'mapbox-gl';
 // material module
 import { MaterialModule } from './material.module';
 
@@ -38,6 +39,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
 import { LoginDefaultComponent } from './components/login-default/login-default.component';
 import { TelephoneFieldComponent } from './components/telephone-field/telephone-field.component';
+import { CartComponent } from './components/cart/cart.component';
+import { PaymentComponent } from './components/payment/payment.component';
+import { OrderTableComponent } from './components/order-table/order-table.component';
 
 
 @NgModule({
@@ -56,7 +60,10 @@ import { TelephoneFieldComponent } from './components/telephone-field/telephone-
     OrderListComponent,
     ResetPasswordComponent,
     LoginDefaultComponent,
-    TelephoneFieldComponent
+    TelephoneFieldComponent,
+    CartComponent,
+    PaymentComponent,
+    OrderTableComponent
   ],
   imports: [
     BrowserModule,
@@ -69,6 +76,7 @@ import { TelephoneFieldComponent } from './components/telephone-field/telephone-
     RecaptchaModule,
     RecaptchaFormsModule,
     MDBBootstrapModule.forRoot(),
+    NgxStripeModule.forRoot('pk_test_51HueDwBg545NKOukzKez7oE2rLvsCy7rHD81YLlicverape9EsTOsGGCdCOdDKrMgtSBM2eT2TCWZMSC3AzlI9qQ00h4z04Ih6'),
     AppRoutingModule,
     BrowserAnimationsModule
   ],

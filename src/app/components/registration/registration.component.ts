@@ -1,5 +1,5 @@
 // built-in modules
-import { Component, OnInit,ElementRef,ChangeDetectorRef,ViewChild} from '@angular/core';
+import { Component, OnInit,ElementRef,ChangeDetectorRef,ViewChild, ViewEncapsulation} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import { Router } from '@angular/router';
 import {MDBModalRef, MDBModalService,MdbTableDirective, ModalDirective} from "angular-bootstrap-md";
@@ -14,7 +14,8 @@ import { MyTel } from 'src/app/modals/myTel';
 @Component({
   selector: 'app-registration',
   templateUrl: './registration.component.html',
-  styleUrls: ['./registration.component.scss']
+  styleUrls: ['./registration.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class RegistrationComponent implements OnInit {
 
@@ -27,11 +28,13 @@ export class RegistrationComponent implements OnInit {
   secondFormGroup: FormGroup;
   // isOptional = false;
 
+  fileToUpload: File = null;
+  firstName;lastName;userName;email;phoneNumber;role;password;confirmPassword;
   form: FormGroup = new FormGroup({
     tel: new FormControl(new MyTel('', '', ''))
   });
 
-  selectedRole = 'agent';
+  selectedRole = 'end-user';
   phoneNo="092909943";
   items: any[] = [
     { id: 1, name: 'User' },
@@ -83,35 +86,62 @@ export class RegistrationComponent implements OnInit {
     //getted from binding
     // console.log(this.selected)
   }
-  registerUser(event){
+  registerUserDetail(event){
     console.log('register button clicked');
     const targetValue=event.target;
-    const firstName=targetValue.querySelector('#firstName').value;
-    console.log(firstName);
-    const lastName=targetValue.querySelector('#lastName').value;
-    const userName=targetValue.querySelector('#userName').value;
+     this.firstName=targetValue.querySelector('#firstName').value;
+    console.log(this.firstName);
+    this.lastName=targetValue.querySelector('#lastName').value;
+    this.userName=targetValue.querySelector('#userName').value;
     // const phoneNumber= targetValue.querySelector('#phoneNumber').value;
-    const email= targetValue.querySelector('#email').value;
-    const password=targetValue.querySelector('#password').value;
-    const confirmPassword=targetValue.querySelector('#confirmPassword').value;
+    this. email= targetValue.querySelector('#email').value;
+    this.password=targetValue.querySelector('#password').value;
+    this.confirmPassword=targetValue.querySelector('#confirmPassword').value;
     console.log(this.selectedRole);
-    console.log(firstName,lastName,userName, this.phoneNo,email,this.selectedRole,password, confirmPassword);
-    if(password !== confirmPassword ){
+    console.log(this.firstName,this.lastName,this.userName, this.phoneNo,this.email,this.selectedRole,this.password, this.confirmPassword);
+   
+  }
+
+  // register
+  registerUser(event){
+    const user = {
+      firstName:this.firstName,
+      lastName:this.lastName,
+      username:this.userName,
+      email:this.email,
+      phoneNumber:this.phoneNo,
+      role:this.selectedRole,
+      password:this.password
+    }
+    if(this.password !== this.confirmPassword ){
       alert('password not matched');
     }
     else{
       console.log('ready to login');
-      this.authService.agentRegisterDetail(firstName,lastName,userName,this.phoneNo,email,this.selectedRole,password)
-      .subscribe((res)=>{
-          if(res.success){
-             console.log(res);
-            // this.router.navigate(['login']);
-
-          }
-      });
+      if(this.selectedRole == 'end-user'){
+        this.authService.userRegisterDetail(user)
+        .subscribe((res)=>{
+            if(res.success){
+               console.log(res);
+              // this.router.navigate(['login']);
+  
+            }
+        });
+      }
+      if(this.selectedRole == 'agent'){
+        this.authService.agentRegisterDetail(this.firstName,this.lastName,this.userName,this.phoneNo,this.email,this.selectedRole,this.password)
+        .subscribe((res)=>{
+            if(res.success){
+               console.log(res);
+              // this.router.navigate(['login']);
+  
+            }
+        });
+      }
+     
+     
     }
   }
-
   // launch to login modal page
   openLoginPage(){
     console.log('already have an account');
