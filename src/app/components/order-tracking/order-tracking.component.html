@@ -1,3 +1,15 @@
+<div #delayalert class="alert alert-success alert-dismissible fade" role="alert">
+  <button type="button" class="close" aria-label="Close" (click)="closeAlert(1)">
+    <span aria-hidden="true">&times;</span>
+  </button>
+  {{delayedOrderName}}'s Order delivery date Updated successfully!<a class="alert-link">&nbsp; Go to list of my orders</a>
+</div>
+<div #cancelalert class="alert alert-success alert-dismissible fade" role="alert">
+  <button type="button" class="close" aria-label="Close" (click)="closeAlert(2)">
+    <span aria-hidden="true">&times;</span>
+  </button>
+  {{delayedOrderName}}'s Order delivery date Updated successfully!<a class="alert-link">&nbsp; Go to list of my orders</a>
+</div>
 <div class="p-4 text-center text-white text-lg rounded-top" style="background-color: #5c6bc0"><span
     class="text-uppercase">Tracking Order No - </span><span class="text-medium">34VB5540K83</span></div>
 <div class="container pb-5 mb-sm-4">
@@ -75,9 +87,9 @@
       <input class="custom-control-input" type="checkbox" id="notify-me" checked="">
       <label class="custom-control-label" for="notify-me">Notify me when order is delivered</label>
     </div>
-    <a class="btn btn-primary btn-sm mt-2" data-toggle="modal" (click)="OrderDetailDisplay()">Order Detail</a>
-    <a class="btn btn-primary btn-sm mt-2" data-toggle="modal" (click)="DelayOrderModal()">Delay Order</a>
-    <a class="btn btn-primary btn-sm mt-2" data-toggle="modal" (click)="cancelOrderModal()">Cancel Order</a>
+    <a class="btn  btn-sm mt-2" data-toggle="modal" style="background-color: #5c77fc;" (click)="OrderDetailDisplay()">Order Detail</a>
+    <a class="btn btn-sm mt-2" data-toggle="modal" style="background-color: #5c77fc;" (click)="DelayOrderModal()">Delay Order</a>
+    <a class="btn btn-sm mt-2" data-toggle="modal" style="background-color: #5c77fc;" (click)="cancelOrderModal()">Cancel Order</a>
     <!-- <p>
         Today's item: {{orderDetail}}
       </p> -->
@@ -112,26 +124,26 @@
         <!-- <img src="https://mdbootstrap.com/wp-content/uploads/2016/11/admin-dashboard-bootstrap.jpg" alt=""
           class="img-fluid"> -->
         <div class="text-center">
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nesciunt vero illo error eveniet cum.</p>
+          <p>Enter new delivery date.</p>
         </div>
         <div class="col">
           <!-- Delivery Date -->
           <p style="font-weight: bold; font-size: 15px;">Delivery Date</p>
           <mat-form-field class="example-full-width" appearance="fill">
             <mat-label>Choose new date</mat-label>
-            <input matInput [matDatepickerFilter]="myFilter" [matDatepicker]="picker" (dateInput)="addEvent($event)"
-              (dateChange)="addEvent($event)">
+            <input matInput [matDatepickerFilter]="myFilter" [matDatepicker]="picker" (dateInput)="setToDate($event.value)"
+              (dateChange)="setToDate($event.value)">
             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>
           </mat-form-field>
         </div>
       </div>
       <div class="modal-footer justify-content-center">
-        <a type="button" mdbBtn color="info" class="waves-effect btn-sm" mdbWavesEffect
-        *ngFor="let order of orderDetail" (click)="DelayOrder(order._id,order.deliveryDate)">Delay Order
+        <a type="button" mdbBtn style="background-color: #5c77fc;" class="waves-effect btn-sm" mdbWavesEffect
+        *ngFor="let order of orderDetail" (click)="DelayOrder(order)">Delay Order
         </a>
         <a type="button" mdbBtn color="primary" outline="true" class="waves-effect btn-sm" mdbWavesEffect
-          (click)="delay.hide()" data-dismiss="modal">No, thanks</a>
+          (click)="delay.hide()" data-dismiss="modal">No, Change</a>
       </div>
     </div>
   </div>
@@ -141,7 +153,7 @@
 
 <div mdbModal #cancel="mdbModal" class="modal fade left" id="frameModalTop" tabindex="-1" role="dialog"
   aria-labelledby="myModalLabel" aria-hidden="true" (opened)="onOpened($event)">
-  <div class="modal-dialog modal-notify modal-danger modal-dialog-centered modal-sm" modal-sm role="document">
+  <div class="modal-dialog modal-notify modal-dialog-centered modal-sm" modal-sm role="document">
     <div class="modal-content">
       <div class="modal-header">
         <p class="heading lead" style="color:black">CANCEL ORDER</p>
@@ -151,13 +163,17 @@
       </div>
       <div class="modal-body">
         <div class="text-center">
-          <p>Are you sure you want delete this order? please be sure</p>
+          <p>Are you sure you want delete this order?</p>
+          <div class="md-form">
+            <textarea type="text" id="form7" class="md-textarea md-textarea-auto form-control" mdbInput></textarea>
+            <label for="form7">Enter your reason</label>
+          </div>
         </div>
        
       </div>
       <div class="modal-footer justify-content-center">
-        <a type="button" mdbBtn color="info" class="waves-effect btn-sm" mdbWavesEffect 
-        *ngFor="let order of orderDetail" (click)="cancelOrder(order._id,order.deliveryDate)">Cancel Order
+        <a type="button" mdbBtn color="red" class="waves-effect btn-sm" mdbWavesEffect 
+        *ngFor="let order of orderDetail" (click)="cancelOrder(order)">Cancel Order
         </a>
         <a type="button" mdbBtn color="primary" outline="true" class="waves-effect btn-sm" mdbWavesEffect
           (click)="cancel.hide()" data-dismiss="modal">Don't Cancel</a>

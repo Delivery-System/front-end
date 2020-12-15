@@ -8,6 +8,7 @@ import { User } from './user';
 
 export interface Order{
      _id: String;
+     success:boolean;
      item: Item;
      sourceAddress: String;
      destinationAddress: String;
@@ -16,4 +17,12 @@ export interface Order{
      orderer: User;
      receiver: User;
      assignee: User;
+}
+
+export interface CancelOrder{
+     success:boolean;
+     message:string;
+     reason:string;
+     fee:number;
+    order:Order
 }

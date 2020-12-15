@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 // custom module 
-import { Order } from '../modals/order';
+import { Order,CancelOrder } from '../modals/order';
 import { Status } from '../modals/status';
 import { UserProfile } from '../modals/userProfile'
 import { AuthService } from './auth.service';
@@ -69,13 +69,13 @@ export class OrderService {
   }
 
   // cancel order
-  cancelOrderedDelivery(id, data) {
+  cancelOrderedDelivery(id, data):Observable<CancelOrder>  {
     let headers = new HttpHeaders({
       'Content-Type': 'application/json',
       // 'Authorization': this.authService.token
     });
     return this.httpClient
-      .post(`${this.API_URL_ORDERS}/${id}`, data, { headers: headers })
+      .post<CancelOrder>(`${this.API_URL_ORDERS}/${id}`, data, { headers: headers })
       .pipe(map(res => res));
   }
 

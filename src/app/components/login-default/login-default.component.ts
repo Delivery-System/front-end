@@ -80,13 +80,13 @@ export class LoginDefaultComponent implements OnInit {
     // event.preventDefault();
     console.log(event);
     const targetValue = event.target;
-    const username = targetValue.querySelector('#emailInput').value;
+    const email = targetValue.querySelector('#emailInput').value;
     const password = targetValue.querySelector('#passwordInput').value;
     const user = {
-      username: username,
+      email: email,
       password: password
     }
-    console.log(username, password);
+    console.log(email, password);
     this.authService.userLoginDetail(user)
       .subscribe(res => {
         console.log('server response:', res);

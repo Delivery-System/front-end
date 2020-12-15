@@ -24,6 +24,7 @@ export class UpdateOrderStatusComponent implements OnInit {
   constructor(private orderService:OrderService) { }
 
   ngOnInit(): void {
+    console.log('accepted data from parent',this.orderDetail);
   }
 
   events: string[] = [];

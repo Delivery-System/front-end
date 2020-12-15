@@ -95,6 +95,7 @@ export class AgentDeliveryComponent implements OnInit ,AfterViewInit {
     this.paymentStatus = false;
     this.bonusStatus = false;
     this.updateStatus=true;
+    this.orderApprovalDetail.push(newItem);
   }
 
   constructor(private cdRef: ChangeDetectorRef, private router: Router,private recaptchaV3Service: ReCaptchaV3Service, private orderService:OrderService) { }
