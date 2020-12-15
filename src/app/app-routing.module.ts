@@ -17,11 +17,20 @@ import { LoginDefaultComponent } from './components/login-default/login-default.
 import { PaymentComponent } from './components/payment/payment.component';
 import { OrderTableComponent } from './components/order-table/order-table.component';
 import { Role } from './modals/role';
+import { OrderTrackingComponent } from './components/order-tracking/order-tracking.component';
+
 
 const routes: Routes = [
+  // {
+  //   path:'', redirectTo:'login',pathMatch:'full'
+  // },
   {
     path:'order',
     component:OrderComponent
+  },
+  {
+    path:'track',
+    component:OrderTrackingComponent
   },
   {
     path:'orderTable',
@@ -73,7 +82,7 @@ const routes: Routes = [
   {
     path:'',
     component:EdeliveryMateComponent
-  }
+  },
 ];
 
 @NgModule({

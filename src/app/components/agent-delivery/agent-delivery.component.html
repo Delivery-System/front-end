@@ -99,9 +99,21 @@
             <li class="nav-item">
                 <a class="nav-link" (click)="getOrder()"> <span></span>&nbsp; Order Request</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" (click)="getReOrders()">&nbsp; Approved Request</a>
+
+            <li class="nav-item avatar dropdown" dropdown>
+                <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light"
+                    mdbWavesEffect>
+                    &nbsp; Processed Request
+                   </a>
+                <div *dropdownMenu class="dropdown-menu dropdown-menu-right dropdown dropdown-primary" role="menu">
+                    <a class="dropdown-item waves-light" mdbWavesEffect (click)="getReOrders()">Accepted Order</a>
+                    <a class="dropdown-item waves-light" mdbWavesEffect (click)="logout()">Denied Orders</a>
+                </div>
             </li>
+
+            <!-- <li class="nav-item">
+                <a class="nav-link" (click)="getReOrders()">&nbsp; Approved Request</a>
+            </li> -->
         </ul>
     </div>
 
@@ -229,56 +241,59 @@
                     <mdb-icon fas icon="search" aria-hidden="true"></mdb-icon>
                 </form>
                 <div class="orderListMessage">
-                    <button mdbBtn type="button"  (click)="getOrders()"  class="btn-md" color="info" outline="true"
+                    <button mdbBtn type="button" (click)="getOrders()" class="btn-md" color="info" outline="true"
                         mdbWavesEffect> Requested Order </button>
-                        <!-- (click)="frameOrder.show()" -->
+                    <!-- (click)="frameOrder.show()" -->
                 </div>
 
                 <!-- <div class="placeTaker"> -->
-                    <table mdbTable striped="true">
-                        <thead>
-                            <tr>
-                                <th *ngFor="let head of headElements" scope="col">{{ head }}</th>
-                            </tr>
-                        </thead>
-                        <tbody mdbTableCol *ngFor="let el of orderRequest">
-                            <tr>
-                                <td scope="row">
-                                    <button type="button" mdbBtn  color="info" class="master-button" mdbWavesEffect
-                                        *ngIf="el.collapsed" (click)="el.collapsed = !el.collapsed">
-                                        <mdb-icon fas icon="angle-down"></mdb-icon>
-                                    </button>
-                                    <button type="button" mdbBtn color="info" class="master-button" mdbWavesEffect
-                                        *ngIf="!el.collapsed" (click)="el.collapsed = !el.collapsed">
-                                        <mdb-icon fas icon="angle-right"></mdb-icon>
-                                    </button>
-                                    <span class="ml-1">{{ el.id }}</span>
-                                </td>
-                                <td>{{ el.item.name }}</td>
-                                <td>{{ el.item.category }}</td>
-                                <td>{{ el.item.quantity }}</td>
-                            </tr>
-                            <tr *ngIf="el.collapsed"
-                                style="text-align: center; background-color: rgba(0, 0, 0,  0.015)">
-                                <td colspan="100%" style="border: 0 !important">
-                                    <table mdbTable>
-                                        <thead class="black white-text">
-                                            <tr>
-                                                <th *ngFor="let head of masterHeadElements" scope="col">{{ head }}</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>{{ el.orderer.firstName }}</td>
-                                                <td>{{ el.orderer.email }}</td>
-                                                <td>{{ el.orderer.role }}</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+                <table mdbTable striped="true">
+                    <thead>
+                        <tr>
+                            <th *ngFor="let head of headElements" scope="col">{{ head }}</th>
+                        </tr>
+                    </thead>
+                    <tbody mdbTableCol *ngFor="let el of orderRequest">
+                        <tr>
+                            <td scope="row">
+                                <button type="button" mdbBtn color="info" class="master-button" mdbWavesEffect
+                                    *ngIf="el.collapsed" (click)="el.collapsed = !el.collapsed">
+                                    <mdb-icon fas icon="angle-down"></mdb-icon>
+                                </button>
+                                <button type="button" mdbBtn color="info" class="master-button" mdbWavesEffect
+                                    *ngIf="!el.collapsed" (click)="el.collapsed = !el.collapsed">
+                                    <mdb-icon fas icon="angle-right"></mdb-icon>
+                                </button>
+                                <span class="ml-1">{{ el.id }}</span>
+                            </td>
+                            <td><a (click)='addStatus(el)'>{{ el.item.name }}</a></td>
+                            <td>{{ el.item.category }}</td>
+                            <td> <button type="button" mdbBtn size="sm" mdbWavesEffect
+                                    (click)="AcceptOrder(el)">AcceptOrder</button></td>
+                            <td> <button type="button" mdbBtn size="sm" mdbWavesEffect (click)="denyOrder(el)">Deny
+                                    Order</button></td>
+                        </tr>
+                        <tr *ngIf="el.collapsed" style="text-align: center; ">
+                            <td colspan="100%" style="border: 0 !important">
+                                <table mdbTable>
+                                    <thead class="black white-text">
+                                        <tr>
+                                            <th *ngFor="let head of masterHeadElements" scope="col">{{ head }}</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>{{ el.deliveryDate }}</td>
+                                            <td>{{ el.item.name }}</td>
+                                            <td>{{ el.orderer.role }}</td>
+                                            <td>{{ el.orderer.role }}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
 
                 <!-- </div> -->
             </mdb-card-body>
@@ -580,7 +595,20 @@
             </mdb-card-body>
         </mdb-card>
     </div>
+
+    <!-- status section -->
+    <div class="contentRight" *ngIf='updateStatus'>
+        <mdb-card class="orderCard">
+            <mdb-card-body class="orderHistory">
+                <app-update-order-status [orderDetail]="orderApprovalDetail"></app-update-order-status>
+                <!-- <ul>
+                <li *ngFor="let order of orderDetail">hello:{{order._id}}</li>
+              </ul> -->
+            </mdb-card-body>
+        </mdb-card>
+    </div>
 </div>
+
 
 <!-- footer content -->
 <div class="content" role="main">
@@ -592,7 +620,8 @@
         <a href="https://github.com/angular/angular" target="_blank" rel="noopener">
             <svg class="material-icons" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
                 <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z" fill="#1976d2" />
-                <path d="M0 0h24v24H0z" fill="none" /></svg>
+                <path d="M0 0h24v24H0z" fill="none" />
+            </svg>
         </a>
     </footer>
     <!-- Copyright -->
@@ -660,7 +689,7 @@
     <div class="modal-dialog modal-avatar modal-md" role="document">
         <div class="modal-content">
             <div class="modal-body mb-1">
-                <form class="text-center" (submit)="orderDelivery($event)">
+                <form class="text-center">
                     <div class="form-row mb-4">
                         <div class="col">
                             <input type="text" id="name" class="form-control" placeholder="Enter name">

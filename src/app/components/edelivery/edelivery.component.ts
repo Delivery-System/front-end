@@ -1,8 +1,8 @@
 // built-in modules
 import { Component, OnInit, ViewChild, HostListener, AfterViewInit, ChangeDetectorRef } from '@angular/core';
 import { RecaptchaFormsModule, ReCaptchaV3Service } from 'ng-recaptcha';
-import { MdbTablePaginationComponent, MdbTableDirective  } from 'angular-bootstrap-md';
-import {FormControl, FormGroup, Validators} from "@angular/forms";
+import { MdbTablePaginationComponent, MdbTableDirective } from 'angular-bootstrap-md';
+import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { Router } from '@angular/router';
 
 // custom module
@@ -20,7 +20,7 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class EdeliveryComponent implements OnInit, AfterViewInit {
   validatingForm: FormGroup;
-  orderMyRequest:any=[];
+  orderMyRequest: any = [];
   items: any[] = [
     { id: 1, name: 'Document ' },
     { id: 2, name: 'Electronics' },
@@ -31,14 +31,14 @@ export class EdeliveryComponent implements OnInit, AfterViewInit {
   selected: number = 1;
 
   elementsOrder: any = [
-    {id: 1, types: 'Furniture', quantity: 'one truck pack', time: 'ASAP'},
-    {id: 2, types: 'Laundary', quantity: 'one basket', time: 'Tommorrow'},
-    {id: 3, types: 'Groceries', quantity: 'one zembil', time: 'saturday morning'},
+    { id: 1, types: 'Furniture', quantity: 'one truck pack', time: 'ASAP' },
+    { id: 2, types: 'Laundary', quantity: 'one basket', time: 'Tommorrow' },
+    { id: 3, types: 'Groceries', quantity: 'one zembil', time: 'saturday morning' },
   ];
   elementsReorder: any = [
-    {id: 1, types: 'Food', Schedule: ' every launch', time: '@12Am'},
-    {id: 2, types: 'Laundary', Schedule: 'every saturday', time: '@12Am'},
-    {id: 3, types: 'Groceries', Schedule: 'every saturday', time: '@12Am'},
+    { id: 1, types: 'Food', Schedule: ' every launch', time: '@12Am' },
+    { id: 2, types: 'Laundary', Schedule: 'every saturday', time: '@12Am' },
+    { id: 3, types: 'Groceries', Schedule: 'every saturday', time: '@12Am' },
   ];
 
   elements: any = [
@@ -66,12 +66,12 @@ export class EdeliveryComponent implements OnInit, AfterViewInit {
       collapsed: false,
       masterDetail: [{ orderId: 3, orderDate: '15-01-1994', adress: 'Kirchgasse 6' }],
     },
-    
+
   ];
 
   headElements = ['ID', 'First', 'Last', 'Handle'];
   masterHeadElements = ['Order Id', 'Order Date', 'Adress'];
-  
+
   // headElements = ['ID', 'Types', 'Schedule', 'Time'];
   headElement = ['ID', 'Types', 'auantity', 'Time'];
   profileStatus = true;
@@ -80,12 +80,27 @@ export class EdeliveryComponent implements OnInit, AfterViewInit {
   adrressStatus = false;
   paymentStatus = false;
   bonusStatus = false;
+  trackingStatus = false;
 
-  constructor(private cdRef: ChangeDetectorRef, private recaptchaV3Service: ReCaptchaV3Service, private orderService:OrderService, private authService:AuthService, private router:Router) { }
+  orderDetail = [];
+  addTracking(newItem: string){
+    this.profileStatus = false;
+    this.orderStatus = false;
+    this.reorderStatus = false;
+    this.adrressStatus = false;
+    this.paymentStatus = false;
+    this.bonusStatus = false;
+    this.trackingStatus=true;
+    this.orderDetail.push(newItem);
+  }
+
+  constructor(private cdRef: ChangeDetectorRef, private recaptchaV3Service: ReCaptchaV3Service, private orderService: OrderService, private authService: AuthService, private router: Router) { }
   ngOnInit(): void {
     this.validatingForm = new FormGroup({
       modalFormAvatarPassword: new FormControl('', Validators.required)
     });
+
+    console.log('orderDetail',this.orderDetail);
   }
   ngAfterViewInit() {
   }
@@ -93,7 +108,8 @@ export class EdeliveryComponent implements OnInit, AfterViewInit {
   get modalFormAvatarPassword() {
     return this.validatingForm.get('modalFormAvatarPassword');
   }
-  
+
+
   getProfile() {
     console.log('profile clicked');
     this.profileStatus = true;
@@ -102,6 +118,7 @@ export class EdeliveryComponent implements OnInit, AfterViewInit {
     this.adrressStatus = false;
     this.paymentStatus = false;
     this.bonusStatus = false;
+    this.trackingStatus=false;
   }
   getOrder() {
     console.log('order clicked');
@@ -111,6 +128,7 @@ export class EdeliveryComponent implements OnInit, AfterViewInit {
     this.adrressStatus = false;
     this.paymentStatus = false;
     this.bonusStatus = false;
+    this.trackingStatus=false;
   }
   getReOrders() {
     console.log('order clicked');
@@ -120,6 +138,7 @@ export class EdeliveryComponent implements OnInit, AfterViewInit {
     this.adrressStatus = false;
     this.paymentStatus = false;
     this.bonusStatus = false;
+    this.trackingStatus=false;
   }
   getAddress() {
     console.log('address clicked');
@@ -129,6 +148,7 @@ export class EdeliveryComponent implements OnInit, AfterViewInit {
     this.adrressStatus = true;
     this.paymentStatus = false;
     this.bonusStatus = false;
+    this.trackingStatus=false;
   }
   getPayment() {
     console.log('payment clicked');
@@ -138,6 +158,7 @@ export class EdeliveryComponent implements OnInit, AfterViewInit {
     this.adrressStatus = false;
     this.paymentStatus = true;
     this.bonusStatus = false;
+    this.trackingStatus=false;
   }
   getBonus() {
     console.log('bonus clicked');
@@ -147,9 +168,10 @@ export class EdeliveryComponent implements OnInit, AfterViewInit {
     this.adrressStatus = false;
     this.paymentStatus = false;
     this.bonusStatus = true;
+    this.trackingStatus=false;
   }
 
-  
+
   // get selected role
   selectOption(id: number) {
     console.log(id);
@@ -157,67 +179,67 @@ export class EdeliveryComponent implements OnInit, AfterViewInit {
   }
 
   // mock data 
-  item:Item={
-      'name':'sofa',
-      'category':'furniture',
-      'weightRange':'700Kg',
-      'quantity':1
+  item: Item = {
+    'name': 'sofa',
+    'category': 'furniture',
+    'weightRange': '700Kg',
+    'quantity': 1
   }
 
-  orderer:UserProfile={
-    'role':Role.EndUser,
-    'firstName':'',
-    'lastName':'',
-    'username':'',
-    'email':'',
-    'password':'',
-    'address':'',
-    'phoneNumber':'',
+  orderer: UserProfile = {
+    'role': Role.EndUser,
+    'firstName': '',
+    'lastName': '',
+    'username': '',
+    'email': '',
+    'password': '',
+    'address': '',
+    'phoneNumber': '',
   }
-  receiver:UserProfile={
-    'role':Role.EndUser,
-    'firstName':'',
-    'lastName':'',
-    'username':'',
-    'email':'',
-    'password':'',
-    'address':'',
-    'phoneNumber':'',
+  receiver: UserProfile = {
+    'role': Role.EndUser,
+    'firstName': '',
+    'lastName': '',
+    'username': '',
+    'email': '',
+    'password': '',
+    'address': '',
+    'phoneNumber': '',
   }
-  Assignee:UserProfile={
-    'role':Role.EndUser,
-    'firstName':'',
-    'lastName':'',
-    'username':'',
-    'email':'',
-    'password':'',
-    'address':'',
-    'phoneNumber':'',
+  Assignee: UserProfile = {
+    'role': Role.EndUser,
+    'firstName': '',
+    'lastName': '',
+    'username': '',
+    'email': '',
+    'password': '',
+    'address': '',
+    'phoneNumber': '',
   }
- status= Status.PENDING;
-  sourceAdd='piasa';
-  destAdd='bole';
-  deliveryDate=new  Date();
+  status = Status.PENDING;
+  sourceAdd = 'piasa';
+  destAdd = 'bole';
+  deliveryDate = new Date();
   // order delivery
-  orderDelivery(event){
+  orderDelivery(event) {
     console.log('add to  clicked');
-    const targetValue= event.target;
-    this.orderService.orderDeliveryDetail(this.item,this.sourceAdd,this.destAdd,this.deliveryDate,this.status,this.orderer,this.receiver).subscribe((res)=>{
-        console.log('order succeded');
-        console.log(res);
+    const targetValue = event.target;
+    this.orderService.orderDeliveryDetail(this.item, this.sourceAdd, this.destAdd, this.deliveryDate, this.status, this.orderer, this.receiver).subscribe((res) => {
+      console.log('order succeded');
+      console.log(res);
     })
   }
 
-  getMyOrders(){
+  getMyOrders() {
     console.log('get order');
-    this.orderService.getOrder().subscribe((res)=>{
-      console.log('order succeded',res);
-      this.orderMyRequest=res;
-      console.log('requested order:',this.orderMyRequest);
+    this.orderService.getOrder().subscribe((res) => {
+      console.log('order succeded', res);
+      this.orderMyRequest = res;
+      console.log('requested order:', this.orderMyRequest);
     });
   }
 
-  logout(){
+  logout() {
     console.log('logout clicked');
     this.authService.logout();
     this.router.navigate(['/']);

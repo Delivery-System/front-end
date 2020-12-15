@@ -1,5 +1,5 @@
 // built-in module
-import { HttpClient,HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -18,15 +18,15 @@ export class OrderService {
 
   private API_URL_USERS = 'http://localhost:3000/users';
   private API_URL_ORDERS = 'http://localhost:3000/orders';
-  constructor(private httpClient:HttpClient,private authService: AuthService) { }
+  constructor(private httpClient: HttpClient, private authService: AuthService) { }
 
   status: Status;
-  orderDeliveryDetail(item:any,sourceAddress:String,destinationAddress: String,deliveryDate: Date, status: string,orderer:UserProfile,receiver:UserProfile):Observable<Order>{
+  orderDeliveryDetail(item: any, sourceAddress: String, destinationAddress: String, deliveryDate: Date, status: string, orderer: UserProfile, receiver: UserProfile): Observable<Order> {
     let headers = new HttpHeaders({
       'Content-Type': 'application/json',
       // 'Authorization': this.authService.token
     });
-    return this.httpClient.post<Order>(`${this.API_URL_ORDERS}/`,{
+    return this.httpClient.post<Order>(`${this.API_URL_ORDERS}/`, {
       item,
       sourceAddress,
       destinationAddress,
@@ -34,31 +34,52 @@ export class OrderService {
       status,
       orderer,
       receiver
-    },{ headers: headers })
-    .pipe(map(res => res));;
+    }, { headers: headers })
+      .pipe(map(res => res));;
   }
 
-  getOrder():Observable<Order>{
+  getOrder(): Observable<Order> {
     let headers = new HttpHeaders({
       'Content-Type': 'application/json',
       // 'Authorization': this.authService.token
     });
-    return this.httpClient.get<Order>('http://localhost:3000/orders',{ headers: headers })
-    .pipe(map(res => res));
+    return this.httpClient.get<Order>('http://localhost:3000/orders', { headers: headers })
+      .pipe(map(res => res));
   }
 
   // get my order
-  getFilteredOrders(data):Observable<Order> {
+  getFilteredOrders(data): Observable<Order> {
     let headers = new HttpHeaders({
       'Content-Type': 'application/json',
       // 'Authorization': this.authService.token
     });
     console.log('filter', data);
-    return this.httpClient.post<Order>(`${this.API_URL_ORDERS}/filter`, data, { headers: headers })
-      .pipe(map(res => {console.log("res",res);
-        return res}));
+    return this.httpClient.post<Order>(`${this.API_URL_ORDERS}/filter`, data, { headers: headers });
   }
 
+  // update order
+  updateUserOrder(id, data):Observable<Order> {
+    let headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      // 'Authorization': this.authService.token
+    });
+    return this.httpClient
+      .patch<Order>(`${this.API_URL_ORDERS}/${id}`, data, { headers: headers })
+      .pipe(map(res => res));
+  }
+
+  // cancel order
+  cancelOrderedDelivery(id, data) {
+    let headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      // 'Authorization': this.authService.token
+    });
+    return this.httpClient
+      .post(`${this.API_URL_ORDERS}/${id}`, data, { headers: headers })
+      .pipe(map(res => res));
+  }
+
+  // unused
   setOrder(order) {
     let headers = new HttpHeaders({
       'Content-Type': 'application/json',
@@ -91,24 +112,6 @@ export class OrderService {
 
 
 
-  updateOrder(id, data) {
-    let headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Authorization': this.authService.token
-    });
-    return this.httpClient
-      .patch(`${this.API_URL_ORDERS}/${id}`, data, { headers: headers })
-      .pipe(map(res => res));
-  }
-  cancelOrder(id, data) {
-    let headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Authorization': this.authService.token
-    });
-    return this.httpClient
-      .post(`${this.API_URL_ORDERS}/${id}`, data, { headers: headers })
-      .pipe(map(res => res));
-  }
   getUsers() {
     let headers = new HttpHeaders({
       'Content-Type': 'application/json'

@@ -1,15 +1,15 @@
 // built-in module
 import { Component, OnInit, ElementRef, HostListener, AfterViewInit, ViewChild, ChangeDetectorRef } from '@angular/core';
-import { MdbTableDirective, MdbTablePaginationComponent } from 'angular-bootstrap-md';
-
-
-// import { MdbTableDirective, MdbTablePaginationComponent } from 'ng-uikit-pro-standard';
+import {MdbTablePaginationComponent } from 'angular-bootstrap-md';
+import { MDBModalRef, MDBModalService, MdbTableDirective, ModalDirective } from "angular-bootstrap-md";
+import { Output, EventEmitter } from '@angular/core';
 
 // custom module
 import { AuthService } from 'src/app/services/auth.service';
 import { OrderService } from 'src/app/services/order.service';
 import { Order } from '../../modals/order';
 import { User } from 'src/app/modals/user';
+import { EditOrderComponent } from '../edit-order/edit-order.component';
 
 
 @Component({
@@ -22,6 +22,12 @@ export class OrderTableComponent implements OnInit, AfterViewInit {
   @ViewChild(MdbTablePaginationComponent, { static: true }) mdbTablePagination: MdbTablePaginationComponent;
   @ViewChild('row', { static: true }) row: ElementRef;
 
+  @Output() newItemEvent = new EventEmitter<string>();
+  trackingState(value: string) {
+    this.newItemEvent.emit(value);
+  }
+  modalRef: MDBModalRef;
+  
   userOrder:any=[];
   orders: Array<Order>;
   elements: any = [];
@@ -32,42 +38,17 @@ export class OrderTableComponent implements OnInit, AfterViewInit {
 
   searchText: string ;
   previous: string;
-  constructor(private cdRef: ChangeDetectorRef, private authService: AuthService, private orderService: OrderService) { }
+  constructor(private cdRef: ChangeDetectorRef, private authService: AuthService, private orderService: OrderService, private modalService: MDBModalService) { }
 
   @HostListener('input') oninput() {
     this.mdbTablePagination.searchText = this.searchText;
   }
-  ngOnInit(): void {
+  ngOnInit() {
     // for (let i = 1; i <= 35; i++) {
     //   this.elements.push({ orderId: i.toString(), orderName: 'Shelf ' + i, orderDate: '12/12/2020 ' + i, Action: 'Handle ' + i });
     // }
 
     this.getmyOrder();
-    // console.log('user order:', this.authService.currentUserValue);
-    // const filter =
-    // {
-    //   "orderer.email": this.authService.currentUserValue.account.email
-
-    // }
-    // console.log('filter',filter['orderer.email']);
-    // this.orderService.getFilteredOrders(filter).subscribe((res) => {
-    //       console.log('res',res);
-    //       this.elements=res;
-    //       console.log( 'my orders',this.elements);
-          
-    // },
-    //   err => {
-    //     console.log(err);
-    //     return false;
-    //   });
-    // console.log('order array', this.userOrder);
-    // console.log('current', this.authService.currentUserValue.account.email);
-    console.log( 'my orders outside',this.elements);
-    this.mdbTable.setDataSource(this.elements);
-    this.elements = this.mdbTable.getDataSource();
-    this.previous = this.mdbTable.getDataSource();
-
-    
   }
 
   ngAfterViewInit() {
@@ -143,28 +124,48 @@ export class OrderTableComponent implements OnInit, AfterViewInit {
     });
   }
 
-  async getmyOrder() {
+  // get specific users order
+  getmyOrder() {
     console.log('user order:', this.authService.currentUserValue);
     const filter =
     {
       "orderer.email": this.authService.currentUserValue.account.email
     }
     console.log('filter',filter['orderer.email']);
-    this.elements= await this.orderService.getFilteredOrders(filter).toPromise();
-    // this.orderService.getFilteredOrders(filter).subscribe((res) => {
-    //       console.log('res',res);
-    //       this.elements=res;
-    //       this.file='hello';
-    //       console.log( 'my orders',this.elements);
-    //       console.log('1',this.file);
-    // },
-    //   err => {
-    //     console.log(err);
-    //     return false;
-    //   });
-    console.log('order array', this.userOrder);
+    // this.elements= await this.orderService.getFilteredOrders(filter).toPromise();
+
+    this.orderService.getFilteredOrders(filter).subscribe((res) => {
+          console.log('res',res);
+          this.elements=res;
+          this.file='hello';
+          console.log( 'my orders',this.elements);
+          console.log('1',this.file);
+          this.mdbTable.setDataSource(this.elements);
+          this.elements = this.mdbTable.getDataSource();
+          this.previous = this.mdbTable.getDataSource();
+          console.log('order array', this.userOrder);
+    },
+      err => {
+        console.log(err);
+        return false;
+      });
+  
     console.log('current', this.authService.currentUserValue.account.email);
     console.log( 'my orders outside',this.elements);
     console.log('1',this.file);
+  }
+
+  // update orders
+  updateUserOrder(id){
+    console.log('update clicked',id);
+    const modalOption = {
+      backdrop: true, keyboard: true, focus: true, show: true,
+      ignoreBackdropClick: false, animated: true, containerClass: 'overflow-auto',
+      class: 'modal-md',
+      data: {
+
+      }
+    };
+    this.modalRef = this.modalService.show(EditOrderComponent, modalOption);
   }
 }

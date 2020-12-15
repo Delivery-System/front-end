@@ -33,13 +33,13 @@
                 <tr mdbTableCol (rowCreated)="onRowCreate($event)" (rowRemoved)="onRowRemove($event)"
                     *ngFor="let el of elements; let i = index">
                     <th *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex"
-                        scope="row">{{el.orderId}}</th>
+                        scope="row"><a (click)="trackingState(el)"> {{el._id}} </a></th>
                     <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex"
-                        class="red-text">{{el.orderName}}</td>
+                        class="red-text">{{el.item.name}}</td>
                     <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex">
-                        {{el.orderDate}}</td>
+                        {{el.deliveryDate}}</td>
                     <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex">
-                        <button type="button" mdbBtn color="info" size="sm" mdbWavesEffect>View</button></td>
+                        <button type="button" mdbBtn color="info" size="sm" mdbWavesEffect (click)="updateUserOrder(el._id)">View</button></td>
                 </tr>
             </tbody>
             <tfoot class="grey lighten-5 w-100">
@@ -54,6 +54,6 @@
     </div>
 </div>
 
-
+<!--  -->
 
 <!-- <router-outlet></router-outlet> -->

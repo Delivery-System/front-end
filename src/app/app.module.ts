@@ -42,6 +42,9 @@ import { TelephoneFieldComponent } from './components/telephone-field/telephone-
 import { CartComponent } from './components/cart/cart.component';
 import { PaymentComponent } from './components/payment/payment.component';
 import { OrderTableComponent } from './components/order-table/order-table.component';
+import { EditOrderComponent } from './components/edit-order/edit-order.component';
+import { OrderTrackingComponent } from './components/order-tracking/order-tracking.component';
+import { UpdateOrderStatusComponent } from './components/update-order-status/update-order-status.component';
 
 
 @NgModule({
@@ -63,7 +66,10 @@ import { OrderTableComponent } from './components/order-table/order-table.compon
     TelephoneFieldComponent,
     CartComponent,
     PaymentComponent,
-    OrderTableComponent
+    OrderTableComponent,
+    EditOrderComponent,
+    OrderTrackingComponent,
+    UpdateOrderStatusComponent
   ],
   imports: [
     BrowserModule,

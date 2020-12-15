@@ -245,7 +245,10 @@
     <div class="contentRight" *ngIf='orderStatus'>
         <mdb-card class="orderCard">
             <mdb-card-body class="orderHistory">
-                <app-order-table></app-order-table>
+                <app-order-table (newItemEvent)="addTracking($event)"></app-order-table>
+                <!-- <ul>
+                    <li *ngFor="let order of orderDetail">hello:{{order}}</li>
+                  </ul> -->
                 <!-- Search form -->
                 <!-- <form class="form-inline md-form form-sm active-purple-2">
                     <input class="form-control form-control-sm mr-3 w-75" type="text" placeholder="Search"
@@ -264,11 +267,11 @@
                     <button mdbBtn type="button"  routerLink='/order'  class="btn-md" color="info" outline="true"
                         mdbWavesEffect> Order
                         Now</button>  -->
-                        <!-- (click)="frameOrder.show()" -->
+                <!-- (click)="frameOrder.show()" -->
                 <!-- </div> -->
 
                 <!-- <div class="placeTaker"> -->
-                    <!-- <table mdbTable striped="true">
+                <!-- <table mdbTable striped="true">
                         <thead>
                             <tr>
                                 <th *ngFor="let head of headElements" scope="col">{{ head }}</th>
@@ -613,6 +616,18 @@
             </mdb-card-body>
         </mdb-card>
     </div>
+
+    <!-- tracking section -->
+    <div class="contentRight" *ngIf='trackingStatus'>
+        <mdb-card class="orderCard">
+            <mdb-card-body class="orderHistory">
+                <app-order-tracking [orderDetail]="orderDetail" ></app-order-tracking>
+                <!-- <ul>
+                    <li *ngFor="let order of orderDetail">hello:{{order._id}}</li>
+                  </ul> -->
+            </mdb-card-body>
+        </mdb-card>
+    </div>
 </div>
 
 <!-- footer content -->
@@ -788,7 +803,8 @@
         <a href="https://github.com/angular/angular" target="_blank" rel="noopener">
             <svg class="material-icons" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
                 <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z" fill="#1976d2" />
-                <path d="M0 0h24v24H0z" fill="none" /></svg>
+                <path d="M0 0h24v24H0z" fill="none" />
+            </svg>
         </a>
     </footer>
     <!-- Copyright -->
